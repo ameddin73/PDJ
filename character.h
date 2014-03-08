@@ -20,38 +20,64 @@ private:
     char[] name_; //Character name
     int health_; //Character health
     int xp_; //Character XP, effects damage/strength for enemies and player
+    int x_; //Character x pos
+    int y_; //Character y pos
     float damageMod; //Amount of damage taken from hit
     float attackMod; //Amoutn of damage caused by hit
 
 public:
 
-//Changes name of Character
-//@param char[] newName
-void changeName(char[] newName);
+    //Creates new Character with described x, y, health and xp
+    //Calculates damageMod and attackMod
+    //@param char[] initName
+    //@param int initX
+    //@param int initY
+    //@param int initHealth
+    //@param int initXP
+    Character(char[] initName, int initX, int initY, int initHealth, int initXP);
 
-//Returns name of Character
-//@return char[] name
-char[] name();
+    //Changes name of Character
+    //@param char[] newName
+    void changeName(char[] newName);
 
-//Returns health of Character
-//@return int health
-int health();
+    //Returns name of Character
+    //@return char[] name_
+    char[] name();
 
-//Returns the XP of Character
-//@return int xp
-int xp();
+    //Returns health of Character
+    //@return int health_
+    int health();
 
-//Adds XP to Character and returns new XP
-//@param int plusXP
-void addXP(int plusXP);
+    //Returns the XP of Character
+    //@return int xp_
+    int xp();
 
-//Calculates damage and subtracts health of Character when hit
-//@param int hitValue
-void takeDamage(int hitValue);i
+    //Returns x pos of Character
+    //@return int x_
+    int x();
 
-//Calculates attack value
-//@return int hitValue
-int giveDamage();
+    //Returns y pos of Character
+    //@return int y_
+    int y();
+
+    //Adds XP to Character and returns new XP
+    //Updates damageMod and attackMod accordingly
+    //@param int plusXP
+    void addXP(int plusXP);
+
+    //Calculates damage and subtracts health of Character when hit
+    //@param int hitValue
+    void takeDamage(int hitValue);i
+
+    //Calculates attack value
+    //@param int hitValue
+    //@return int hitValue
+    int giveDamage(int hitValue);
+
+    //Updates position of Character by moving x and y pixels
+    //@param moveX
+    //@param moveY
+    void move(int moveX, int moveY);
 
 };
 
