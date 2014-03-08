@@ -1,0 +1,40 @@
+Program Design:
+
+Classes:
+  +Character
+    -Player
+    -Enemy //Super class
+      >Enemy Types (extends Enemy)...
+    -NPC
+  +Floorplan //map generator, stores map
+  +SDLPrint //displays map, Character's
+  +Quest //Super class
+    -Nexus //main school-area with non-generated maps
+    -Quest Types (extends Quest)...
+  +MAIN
+  
+Character:
+  +string name //NPC, enemy, or player name (enemy can be randomly generated)
+  +int health //character health, npc is unaffected
+  +int xp //total character xp, npc is unaffected
+  +int damage //product of character xp
+
+Floorplan:
+  +int[][] map //array of integers representing map elements
+  
+SDLPrint:
+  +
+
+Quest:
+  +map[] world //array of maps in descending order
+  +float difficulty //affects enemies' hp and xp
+  
+MAIN: //contains MAIN loop
+  +int[] progress //contains number of completed quests for each professor (array allows variable professor count)
+  
+
+Gameplay:
+
+Story:
+
+Player, a new student in a school for burgeoning adventurers begins his first day of class. Instruction at this school is different: all education revolves around practical experience. Each of Player's professors give him assignments relating to their area of study‒be it potion making, archery, or fauna studies‒which require exploring the school's local caves and returning safely having fulfilled the professor's request. A dark secret becomes slowly apparent, though, that few students survive their time at the school, and that the professors only give assignments as petty errand running and for tasks they fear too dangerous for themselves. In the course of discovering this, Player subsequently fights (and kills) each of his professors after completing all of their (partially-random quests). Having killed all of the professors, the Player must traverse the most dangerous of dungeons yet to discover a key to the headmaster's office. There, he kills the headmaster and assumes position as leader of the school.
