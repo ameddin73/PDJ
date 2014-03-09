@@ -13,13 +13,14 @@
 
 using namespace std;
 
-Character:: Character(char[] initName, int initX, int initY, int initHealth, int initXP) {
+Character:: Character(char[] initName, int initX, int initY, int initHealth, int initXP, int initSpeed) {
     //Initializes variables
     name_ = initName;
     health_ = inithealth;
     xp_ = initXP;
     x_ = initX;
     y_ = initY;
+    speed = initSpeed;
 
     //Calculate damageMod and attackMod
     damageMod = log10((float)xp_);
@@ -62,9 +63,23 @@ int Character:: giveDamage(int hitValue) {
     return (int)((float)hitVlue + attackMod);
 }
 
-void Character:: move(int moveX, moveY) {
-    x_ += moveX;
-    y_ += moveY;
+void Character:: move(enum direction) {
+    if(direction == Direction.Left) {
+        if((x_ - speed) != 0)
+            x_ -= speed;
+    }
+    if(direction == Direction.Up) {
+        if((y_ - speed) != 0)
+            y_ -= speed;
+    }
+    if(direction == Direction.Right) {
+        if((x_ + speed) <=  WINDOW_SIZE)
+            x_ += speed;
+    }
+    if(direction == Direction.Down) {
+        if((y_ + speed) <= WINDOW_SIZE)
+            y_ += speed;
+    }
 }
 
 // // // // // // // // // // // // // // // // // // // // // // // // 

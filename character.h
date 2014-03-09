@@ -22,8 +22,15 @@ private:
     int xp_; //Character XP, effects damage/strength for enemies and player
     int x_; //Character x pos
     int y_; //Character y pos
+    int speed; //Character speed
     float damageMod; //Amount of damage taken from hit
     float attackMod; //Amoutn of damage caused by hit
+    enum Direction { //enum for direction input
+        Left,
+        Right,
+        Up,
+        Down
+    };
 
 public:
 
@@ -34,7 +41,7 @@ public:
     //@param int initY
     //@param int initHealth
     //@param int initXP
-    Character(char[] initName, int initX, int initY, int initHealth, int initXP);
+    Character(char[] initName, int initX, int initY, int initHealth, int initXP, int initSpeed);
 
     //Changes name of Character
     //@param char[] newName
@@ -74,10 +81,9 @@ public:
     //@return int hitValue
     int giveDamage(int hitValue);
 
-    //Updates position of Character by moving x and y pixels
-    //@param moveX
-    //@param moveY
-    void move(int moveX, int moveY);
+    //Updates position of Character by moving in one direction
+    //@param enum direction
+    void move(enum direction);
 
 };
 
