@@ -1,0 +1,41 @@
+// 
+// File: new-main.cpp 
+// 
+// 
+// 
+// @author ddm9373: Douglas Moyer
+// 
+// // // // // // // // // // // // // // // // // // // // // // // // 
+
+#include <iostream>
+#include <vector>
+#include "entity.h"
+#include "coordinate.h"
+
+using namespace std;
+
+int main( int argc, const char* argv[] ) {
+    cout << '\n';
+    entity character('@', coordinate(2, 4));
+    entity monster('m', coordinate(3, 5));
+    vector<entity*> entities;
+    entities.push_back( &character );
+    entities.push_back( &monster );
+    cout << entities.front()->print();
+    coordinate testing(3, 5);
+    for(vector<entity*>::iterator it = entities.begin(); it != entities.end(); ++it) {
+        cout << '\n' << (*it)->print();
+        if((*it)->location().equals(testing)) cout << '\n' << "correct!";
+        else cout << '\n' << "wrong!";
+    }
+    cout << '\n';
+    return 0;
+}
+
+// // // // // // // // // // // // // // // // // // // // // // // // 
+// Version: 
+// $Id$ 
+// 
+// Revisions: 
+// $Log$ 
+// 

@@ -1,0 +1,3 @@
+srand(time(NULL)) in MAIN <<
+string name in entity
+terrain_at() should return entities as well
