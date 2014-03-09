@@ -13,7 +13,7 @@
 
 using namespace std;
 
-Character:: Character(char[] initName, int initX, int initY, int initHealth, int initXP, int initSpeed) {
+Character:: Character(srting initName, int initX, int initY, int initHealth, int initXP, int initSpeed) {
     //Initializes variables
     name_ = initName;
     health_ = inithealth;
@@ -29,6 +29,10 @@ Character:: Character(char[] initName, int initX, int initY, int initHealth, int
 
 void Character:: changeName(char[] newName) {
     name = newName;
+}
+
+void Character:: update() {
+    //TODO: update GUI for character location
 }
 
 char[] Character:: name() {

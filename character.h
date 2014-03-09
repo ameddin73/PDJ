@@ -17,7 +17,7 @@
 class Character {
 
 private:
-    char[] name_; //Character name
+    string name_; //Character name
     int health_; //Character health
     int xp_; //Character XP, effects damage/strength for enemies and player
     int x_; //Character x pos
@@ -41,7 +41,10 @@ public:
     //@param int initY
     //@param int initHealth
     //@param int initXP
-    Character(char[] initName, int initX, int initY, int initHealth, int initXP, int initSpeed);
+    Character(string initName, int initX, int initY, int initHealth, int initXP, int initSpeed);
+
+    //Updates character state, moves
+    void update();
 
     //Changes name of Character
     //@param char[] newName
