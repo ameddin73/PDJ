@@ -23,7 +23,7 @@ int main( int argc, const char* argv[] ) {
     SDL_Surface* screenSurface = NULL;
 
     if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
-        printf( "SDL could not initialise!" );
+        printf( "SDL could not initialize!" );
     else {
         window = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
         if ( window == NULL ) {
