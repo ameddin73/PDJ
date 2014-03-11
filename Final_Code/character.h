@@ -27,6 +27,8 @@ private:
     int speed; //Character speed
     float damageMod; //Amount of damage taken from hit
     float attackMod; //Amoutn of damage caused by hit
+    int x_vel_;
+    int y_vel_;
 
 public:
 
@@ -82,8 +84,9 @@ public:
 
     //Updates position of Character by moving in one direction
     //@param enum direction
-    void move(enum direction);
+    void move(enum direction dir);
 
+    void stop_move(enum direction dir);
 };
 
 #endif // CHARACTER_H

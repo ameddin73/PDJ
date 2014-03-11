@@ -19,12 +19,13 @@
 #define TILE_SIZE 10
 
 #define PLAYER_HEALTH 100
+#define PLAYER_SIZE 16
 
 enum direction {
-    left,
-    right,
-    up,
-    down
+    dir_left,
+    dir_right,
+    dir_up,
+    dir_down
 };
 // add include files only if needed for these declarations.
 //#include "character.h"

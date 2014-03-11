@@ -22,6 +22,10 @@ printer::printer(vector<quest> *quests, character *player, int *current_quest) {
     tile_clips_[TILE_WALL].y = 0;
     tile_clips_[TILE_WALL].w = TILE_SIZE;
     tile_clips_[TILE_WALL].h = TILE_SIZE;
+    sprite_clips_[0][0].x = 0;
+    sprite_clips_[0][0].y = 0;
+    sprite_clips_[0][0].w = PLAYER_SIZE;
+    sprite_clips_[0][0].h = PLAYER_SIZE;
 }
 
 bool printer::init() {
@@ -68,10 +72,10 @@ bool printer::load_media() {
         cout << "Can't load tileset!\n";
         success = false;
     }
-/*    if(!sprites_.load_from_file("sprites.png")) {
+    if(!sprites_.load_from_file("mage.png")) {
         cout << "Can't load sprites!\n";
         success = false;
-    } */
+    } 
     return success;
 }
 
@@ -88,8 +92,13 @@ void printer::update() {
             SDL_RenderCopyEx(renderer_, tiles_.texture(), &tile_clips_[terr], &render_quad, 0.0, NULL, SDL_FLIP_NONE);
         }
     }
+    SDL_Rect player_render = {player_->x(), player_->y(), PLAYER_SIZE, PLAYER_SIZE};
+
+    SDL_RenderCopyEx(renderer_, sprites_.texture(), &sprite_clips_[0][0], &player_render, 0.0, NULL, SDL_FLIP_NONE);
     SDL_RenderPresent(renderer_);
 }
+
+int printer::poll_event(SDL_Event *e) { return SDL_PollEvent(e); }
 
 void printer::close() {
     tiles_.free();

@@ -1,0 +1,176 @@
+cc character.o coordinate.o floorplan.o game.o main.o printer.o quest.o -o test -lSDL2 -lSDL2_image -lm
+character.o: In function `character::character(std::string, int, int, int, int, int)':
+/home/douglas/PDJ/Final_Code/character.cpp:16: undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string()'
+/home/douglas/PDJ/Final_Code/character.cpp:18: undefined reference to `std::string::operator=(std::string const&)'
+/home/douglas/PDJ/Final_Code/character.cpp:16: undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string()'
+character.o: In function `character::changeName(std::string)':
+/home/douglas/PDJ/Final_Code/character.cpp:31: undefined reference to `std::string::operator=(std::string const&)'
+character.o: In function `character::name()':
+/home/douglas/PDJ/Final_Code/character.cpp:39: undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&)'
+character.o:(.eh_frame+0x13): undefined reference to `__gxx_personality_v0'
+floorplan.o: In function `__static_initialization_and_destruction_0(int, int)':
+floorplan.cpp:(.text+0xeae): undefined reference to `std::ios_base::Init::Init()'
+floorplan.cpp:(.text+0xec5): undefined reference to `std::ios_base::Init::~Init()'
+floorplan.o: In function `std::vector<coordinate, std::allocator<coordinate> >::_M_insert_aux(__gnu_cxx::__normal_iterator<coordinate*, std::vector<coordinate, std::allocator<coordinate> > >, coordinate const&)':
+floorplan.cpp:(.text._ZNSt6vectorI10coordinateSaIS0_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS0_S2_EERKS0_[_ZNSt6vectorI10coordinateSaIS0_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS0_S2_EERKS0_]+0x22d): undefined reference to `__cxa_end_catch'
+floorplan.cpp:(.text._ZNSt6vectorI10coordinateSaIS0_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS0_S2_EERKS0_[_ZNSt6vectorI10coordinateSaIS0_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS0_S2_EERKS0_]+0x23f): undefined reference to `__cxa_begin_catch'
+floorplan.cpp:(.text._ZNSt6vectorI10coordinateSaIS0_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS0_S2_EERKS0_[_ZNSt6vectorI10coordinateSaIS0_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS0_S2_EERKS0_]+0x2a4): undefined reference to `__cxa_rethrow'
+floorplan.o: In function `std::vector<coordinate, std::allocator<coordinate> >::_M_check_len(unsigned int, char const*) const':
+floorplan.cpp:(.text._ZNKSt6vectorI10coordinateSaIS0_EE12_M_check_lenEjPKc[_ZNKSt6vectorI10coordinateSaIS0_EE12_M_check_lenEjPKc]+0x36): undefined reference to `std::__throw_length_error(char const*)'
+floorplan.o: In function `__gnu_cxx::new_allocator<coordinate>::deallocate(coordinate*, unsigned int)':
+floorplan.cpp:(.text._ZN9__gnu_cxx13new_allocatorI10coordinateE10deallocateEPS1_j[_ZN9__gnu_cxx13new_allocatorI10coordinateE10deallocateEPS1_j]+0xd): undefined reference to `operator delete(void*)'
+floorplan.o: In function `__gnu_cxx::new_allocator<coordinate>::allocate(unsigned int, void const*)':
+floorplan.cpp:(.text._ZN9__gnu_cxx13new_allocatorI10coordinateE8allocateEjPKv[_ZN9__gnu_cxx13new_allocatorI10coordinateE8allocateEjPKv]+0x1c): undefined reference to `std::__throw_bad_alloc()'
+floorplan.cpp:(.text._ZN9__gnu_cxx13new_allocatorI10coordinateE8allocateEjPKv[_ZN9__gnu_cxx13new_allocatorI10coordinateE8allocateEjPKv]+0x2a): undefined reference to `operator new(unsigned int)'
+floorplan.o:(.eh_frame+0x6b): undefined reference to `__gxx_personality_v0'
+game.o: In function `game::game()':
+game.cpp:(.text+0x19): undefined reference to `std::allocator<char>::allocator()'
+game.cpp:(.text+0x33): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&)'
+game.cpp:(.text+0x7b): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string()'
+game.cpp:(.text+0x86): undefined reference to `std::allocator<char>::~allocator()'
+game.cpp:(.text+0xc8): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string()'
+game.cpp:(.text+0xd7): undefined reference to `std::allocator<char>::~allocator()'
+game.o: In function `__static_initialization_and_destruction_0(int, int)':
+game.cpp:(.text+0x218): undefined reference to `std::ios_base::Init::Init()'
+game.cpp:(.text+0x22f): undefined reference to `std::ios_base::Init::~Init()'
+game.o: In function `character::~character()':
+game.cpp:(.text._ZN9characterD2Ev[_ZN9characterD5Ev]+0xd): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string()'
+game.o: In function `std::vector<quest, std::allocator<quest> >::_M_insert_aux(__gnu_cxx::__normal_iterator<quest*, std::vector<quest, std::allocator<quest> > >, quest const&)':
+game.cpp:(.text._ZNSt6vectorI5questSaIS0_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS0_S2_EERKS0_[_ZNSt6vectorI5questSaIS0_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS0_S2_EERKS0_]+0x268): undefined reference to `__cxa_end_catch'
+game.cpp:(.text._ZNSt6vectorI5questSaIS0_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS0_S2_EERKS0_[_ZNSt6vectorI5questSaIS0_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS0_S2_EERKS0_]+0x27a): undefined reference to `__cxa_begin_catch'
+game.cpp:(.text._ZNSt6vectorI5questSaIS0_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS0_S2_EERKS0_[_ZNSt6vectorI5questSaIS0_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS0_S2_EERKS0_]+0x2e4): undefined reference to `__cxa_rethrow'
+game.o: In function `std::vector<quest, std::allocator<quest> >::_M_check_len(unsigned int, char const*) const':
+game.cpp:(.text._ZNKSt6vectorI5questSaIS0_EE12_M_check_lenEjPKc[_ZNKSt6vectorI5questSaIS0_EE12_M_check_lenEjPKc]+0x36): undefined reference to `std::__throw_length_error(char const*)'
+game.o: In function `__gnu_cxx::new_allocator<quest>::deallocate(quest*, unsigned int)':
+game.cpp:(.text._ZN9__gnu_cxx13new_allocatorI5questE10deallocateEPS1_j[_ZN9__gnu_cxx13new_allocatorI5questE10deallocateEPS1_j]+0xd): undefined reference to `operator delete(void*)'
+game.o: In function `__gnu_cxx::new_allocator<floorplan>::deallocate(floorplan*, unsigned int)':
+game.cpp:(.text._ZN9__gnu_cxx13new_allocatorI9floorplanE10deallocateEPS1_j[_ZN9__gnu_cxx13new_allocatorI9floorplanE10deallocateEPS1_j]+0xd): undefined reference to `operator delete(void*)'
+game.o: In function `__gnu_cxx::new_allocator<std::vector<character*, std::allocator<character*> > >::deallocate(std::vector<character*, std::allocator<character*> >*, unsigned int)':
+game.cpp:(.text._ZN9__gnu_cxx13new_allocatorISt6vectorIP9characterSaIS3_EEE10deallocateEPS5_j[_ZN9__gnu_cxx13new_allocatorISt6vectorIP9characterSaIS3_EEE10deallocateEPS5_j]+0xd): undefined reference to `operator delete(void*)'
+game.o: In function `floorplan* std::vector<floorplan, std::allocator<floorplan> >::_M_allocate_and_copy<__gnu_cxx::__normal_iterator<floorplan const*, std::vector<floorplan, std::allocator<floorplan> > > >(unsigned int, __gnu_cxx::__normal_iterator<floorplan const*, std::vector<floorplan, std::allocator<floorplan> > >, __gnu_cxx::__normal_iterator<floorplan const*, std::vector<floorplan, std::allocator<floorplan> > >)':
+game.cpp:(.text._ZNSt6vectorI9floorplanSaIS0_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS0_S2_EEEEPS0_jT_SA_[_ZNSt6vectorI9floorplanSaIS0_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS0_S2_EEEEPS0_jT_SA_]+0x4c): undefined reference to `__cxa_end_catch'
+game.cpp:(.text._ZNSt6vectorI9floorplanSaIS0_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS0_S2_EEEEPS0_jT_SA_[_ZNSt6vectorI9floorplanSaIS0_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS0_S2_EEEEPS0_jT_SA_]+0x5e): undefined reference to `__cxa_begin_catch'
+game.cpp:(.text._ZNSt6vectorI9floorplanSaIS0_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS0_S2_EEEEPS0_jT_SA_[_ZNSt6vectorI9floorplanSaIS0_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS0_S2_EEEEPS0_jT_SA_]+0x7c): undefined reference to `__cxa_rethrow'
+game.o: In function `std::vector<character*, std::allocator<character*> >* std::vector<std::vector<character*, std::allocator<character*> >, std::allocator<std::vector<character*, std::allocator<character*> > > >::_M_allocate_and_copy<__gnu_cxx::__normal_iterator<std::vector<character*, std::allocator<character*> > const*, std::vector<std::vector<character*, std::allocator<character*> >, std::allocator<std::vector<character*, std::allocator<character*> > > > > >(unsigned int, __gnu_cxx::__normal_iterator<std::vector<character*, std::allocator<character*> > const*, std::vector<std::vector<character*, std::allocator<character*> >, std::allocator<std::vector<character*, std::allocator<character*> > > > >, __gnu_cxx::__normal_iterator<std::vector<character*, std::allocator<character*> > const*, std::vector<std::vector<character*, std::allocator<character*> >, std::allocator<std::vector<character*, std::allocator<character*> > > > >)':
+game.cpp:(.text._ZNSt6vectorIS_IP9characterSaIS1_EESaIS3_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS3_S5_EEEEPS3_jT_SD_[_ZNSt6vectorIS_IP9characterSaIS1_EESaIS3_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS3_S5_EEEEPS3_jT_SD_]+0x4c): undefined reference to `__cxa_end_catch'
+game.cpp:(.text._ZNSt6vectorIS_IP9characterSaIS1_EESaIS3_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS3_S5_EEEEPS3_jT_SD_[_ZNSt6vectorIS_IP9characterSaIS1_EESaIS3_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS3_S5_EEEEPS3_jT_SD_]+0x5e): undefined reference to `__cxa_begin_catch'
+game.cpp:(.text._ZNSt6vectorIS_IP9characterSaIS1_EESaIS3_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS3_S5_EEEEPS3_jT_SD_[_ZNSt6vectorIS_IP9characterSaIS1_EESaIS3_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS3_S5_EEEEPS3_jT_SD_]+0x7c): undefined reference to `__cxa_rethrow'
+game.o: In function `__gnu_cxx::new_allocator<quest>::allocate(unsigned int, void const*)':
+game.cpp:(.text._ZN9__gnu_cxx13new_allocatorI5questE8allocateEjPKv[_ZN9__gnu_cxx13new_allocatorI5questE8allocateEjPKv]+0x1c): undefined reference to `std::__throw_bad_alloc()'
+game.cpp:(.text._ZN9__gnu_cxx13new_allocatorI5questE8allocateEjPKv[_ZN9__gnu_cxx13new_allocatorI5questE8allocateEjPKv]+0x31): undefined reference to `operator new(unsigned int)'
+game.o: In function `floorplan* std::__uninitialized_copy<false>::__uninit_copy<__gnu_cxx::__normal_iterator<floorplan const*, std::vector<floorplan, std::allocator<floorplan> > >, floorplan*>(__gnu_cxx::__normal_iterator<floorplan const*, std::vector<floorplan, std::allocator<floorplan> > >, __gnu_cxx::__normal_iterator<floorplan const*, std::vector<floorplan, std::allocator<floorplan> > >, floorplan*)':
+game.cpp:(.text._ZNSt20__uninitialized_copyILb0EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorIPK9floorplanSt6vectorIS4_SaIS4_EEEEPS4_EET0_T_SD_SC_[_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorIPK9floorplanSt6vectorIS4_SaIS4_EEEEPS4_EET0_T_SD_SC_]+0x63): undefined reference to `__cxa_end_catch'
+game.cpp:(.text._ZNSt20__uninitialized_copyILb0EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorIPK9floorplanSt6vectorIS4_SaIS4_EEEEPS4_EET0_T_SD_SC_[_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorIPK9floorplanSt6vectorIS4_SaIS4_EEEEPS4_EET0_T_SD_SC_]+0x75): undefined reference to `__cxa_begin_catch'
+game.cpp:(.text._ZNSt20__uninitialized_copyILb0EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorIPK9floorplanSt6vectorIS4_SaIS4_EEEEPS4_EET0_T_SD_SC_[_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorIPK9floorplanSt6vectorIS4_SaIS4_EEEEPS4_EET0_T_SD_SC_]+0x8c): undefined reference to `__cxa_rethrow'
+game.o: In function `std::vector<character*, std::allocator<character*> >* std::__uninitialized_copy<false>::__uninit_copy<__gnu_cxx::__normal_iterator<std::vector<character*, std::allocator<character*> > const*, std::vector<std::vector<character*, std::allocator<character*> >, std::allocator<std::vector<character*, std::allocator<character*> > > > >, std::vector<character*, std::allocator<character*> >*>(__gnu_cxx::__normal_iterator<std::vector<character*, std::allocator<character*> > const*, std::vector<std::vector<character*, std::allocator<character*> >, std::allocator<std::vector<character*, std::allocator<character*> > > > >, __gnu_cxx::__normal_iterator<std::vector<character*, std::allocator<character*> > const*, std::vector<std::vector<character*, std::allocator<character*> >, std::allocator<std::vector<character*, std::allocator<character*> > > > >, std::vector<character*, std::allocator<character*> >*)':
+game.cpp:(.text._ZNSt20__uninitialized_copyILb0EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorIPKSt6vectorIP9characterSaIS6_EES4_IS8_SaIS8_EEEEPS8_EET0_T_SG_SF_[_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorIPKSt6vectorIP9characterSaIS6_EES4_IS8_SaIS8_EEEEPS8_EET0_T_SG_SF_]+0x60): undefined reference to `__cxa_end_catch'
+game.cpp:(.text._ZNSt20__uninitialized_copyILb0EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorIPKSt6vectorIP9characterSaIS6_EES4_IS8_SaIS8_EEEEPS8_EET0_T_SG_SF_[_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorIPKSt6vectorIP9characterSaIS6_EES4_IS8_SaIS8_EEEEPS8_EET0_T_SG_SF_]+0x72): undefined reference to `__cxa_begin_catch'
+game.cpp:(.text._ZNSt20__uninitialized_copyILb0EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorIPKSt6vectorIP9characterSaIS6_EES4_IS8_SaIS8_EEEEPS8_EET0_T_SG_SF_[_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorIPKSt6vectorIP9characterSaIS6_EES4_IS8_SaIS8_EEEEPS8_EET0_T_SG_SF_]+0x89): undefined reference to `__cxa_rethrow'
+game.o: In function `__gnu_cxx::new_allocator<floorplan>::allocate(unsigned int, void const*)':
+game.cpp:(.text._ZN9__gnu_cxx13new_allocatorI9floorplanE8allocateEjPKv[_ZN9__gnu_cxx13new_allocatorI9floorplanE8allocateEjPKv]+0x1c): undefined reference to `std::__throw_bad_alloc()'
+game.cpp:(.text._ZN9__gnu_cxx13new_allocatorI9floorplanE8allocateEjPKv[_ZN9__gnu_cxx13new_allocatorI9floorplanE8allocateEjPKv]+0x2d): undefined reference to `operator new(unsigned int)'
+game.o: In function `floorplan* std::__uninitialized_copy<false>::__uninit_copy<floorplan*, floorplan*>(floorplan*, floorplan*, floorplan*)':
+game.cpp:(.text._ZNSt20__uninitialized_copyILb0EE13__uninit_copyIP9floorplanS3_EET0_T_S5_S4_[_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIP9floorplanS3_EET0_T_S5_S4_]+0x47): undefined reference to `__cxa_end_catch'
+game.cpp:(.text._ZNSt20__uninitialized_copyILb0EE13__uninit_copyIP9floorplanS3_EET0_T_S5_S4_[_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIP9floorplanS3_EET0_T_S5_S4_]+0x59): undefined reference to `__cxa_begin_catch'
+game.cpp:(.text._ZNSt20__uninitialized_copyILb0EE13__uninit_copyIP9floorplanS3_EET0_T_S5_S4_[_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIP9floorplanS3_EET0_T_S5_S4_]+0x70): undefined reference to `__cxa_rethrow'
+game.o: In function `__gnu_cxx::new_allocator<std::vector<character*, std::allocator<character*> > >::allocate(unsigned int, void const*)':
+game.cpp:(.text._ZN9__gnu_cxx13new_allocatorISt6vectorIP9characterSaIS3_EEE8allocateEjPKv[_ZN9__gnu_cxx13new_allocatorISt6vectorIP9characterSaIS3_EEE8allocateEjPKv]+0x1c): undefined reference to `std::__throw_bad_alloc()'
+game.cpp:(.text._ZN9__gnu_cxx13new_allocatorISt6vectorIP9characterSaIS3_EEE8allocateEjPKv[_ZN9__gnu_cxx13new_allocatorISt6vectorIP9characterSaIS3_EEE8allocateEjPKv]+0x30): undefined reference to `operator new(unsigned int)'
+game.o: In function `std::vector<character*, std::allocator<character*> >* std::__uninitialized_copy<false>::__uninit_copy<std::vector<character*, std::allocator<character*> >*, std::vector<character*, std::allocator<character*> >*>(std::vector<character*, std::allocator<character*> >*, std::vector<character*, std::allocator<character*> >*, std::vector<character*, std::allocator<character*> >*)':
+game.cpp:(.text._ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPSt6vectorIP9characterSaIS4_EES7_EET0_T_S9_S8_[_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPSt6vectorIP9characterSaIS4_EES7_EET0_T_S9_S8_]+0x41): undefined reference to `__cxa_end_catch'
+game.cpp:(.text._ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPSt6vectorIP9characterSaIS4_EES7_EET0_T_S9_S8_[_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPSt6vectorIP9characterSaIS4_EES7_EET0_T_S9_S8_]+0x53): undefined reference to `__cxa_begin_catch'
+game.cpp:(.text._ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPSt6vectorIP9characterSaIS4_EES7_EET0_T_S9_S8_[_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPSt6vectorIP9characterSaIS4_EES7_EET0_T_S9_S8_]+0x6a): undefined reference to `__cxa_rethrow'
+game.o: In function `quest* std::__uninitialized_copy<false>::__uninit_copy<quest*, quest*>(quest*, quest*, quest*)':
+game.cpp:(.text._ZNSt20__uninitialized_copyILb0EE13__uninit_copyIP5questS3_EET0_T_S5_S4_[_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIP5questS3_EET0_T_S5_S4_]+0x41): undefined reference to `__cxa_end_catch'
+game.cpp:(.text._ZNSt20__uninitialized_copyILb0EE13__uninit_copyIP5questS3_EET0_T_S5_S4_[_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIP5questS3_EET0_T_S5_S4_]+0x53): undefined reference to `__cxa_begin_catch'
+game.cpp:(.text._ZNSt20__uninitialized_copyILb0EE13__uninit_copyIP5questS3_EET0_T_S5_S4_[_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIP5questS3_EET0_T_S5_S4_]+0x6a): undefined reference to `__cxa_rethrow'
+game.o: In function `__gnu_cxx::new_allocator<character*>::deallocate(character**, unsigned int)':
+game.cpp:(.text._ZN9__gnu_cxx13new_allocatorIP9characterE10deallocateEPS2_j[_ZN9__gnu_cxx13new_allocatorIP9characterE10deallocateEPS2_j]+0xd): undefined reference to `operator delete(void*)'
+game.o: In function `coordinate* std::vector<coordinate, std::allocator<coordinate> >::_M_allocate_and_copy<__gnu_cxx::__normal_iterator<coordinate const*, std::vector<coordinate, std::allocator<coordinate> > > >(unsigned int, __gnu_cxx::__normal_iterator<coordinate const*, std::vector<coordinate, std::allocator<coordinate> > >, __gnu_cxx::__normal_iterator<coordinate const*, std::vector<coordinate, std::allocator<coordinate> > >)':
+game.cpp:(.text._ZNSt6vectorI10coordinateSaIS0_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS0_S2_EEEEPS0_jT_SA_[_ZNSt6vectorI10coordinateSaIS0_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS0_S2_EEEEPS0_jT_SA_]+0x4c): undefined reference to `__cxa_end_catch'
+game.cpp:(.text._ZNSt6vectorI10coordinateSaIS0_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS0_S2_EEEEPS0_jT_SA_[_ZNSt6vectorI10coordinateSaIS0_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS0_S2_EEEEPS0_jT_SA_]+0x5e): undefined reference to `__cxa_begin_catch'
+game.cpp:(.text._ZNSt6vectorI10coordinateSaIS0_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS0_S2_EEEEPS0_jT_SA_[_ZNSt6vectorI10coordinateSaIS0_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS0_S2_EEEEPS0_jT_SA_]+0x7c): undefined reference to `__cxa_rethrow'
+game.o: In function `character** std::vector<character*, std::allocator<character*> >::_M_allocate_and_copy<__gnu_cxx::__normal_iterator<character* const*, std::vector<character*, std::allocator<character*> > > >(unsigned int, __gnu_cxx::__normal_iterator<character* const*, std::vector<character*, std::allocator<character*> > >, __gnu_cxx::__normal_iterator<character* const*, std::vector<character*, std::allocator<character*> > >)':
+game.cpp:(.text._ZNSt6vectorIP9characterSaIS1_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS1_S3_EEEEPS1_jT_SB_[_ZNSt6vectorIP9characterSaIS1_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS1_S3_EEEEPS1_jT_SB_]+0x4c): undefined reference to `__cxa_end_catch'
+game.cpp:(.text._ZNSt6vectorIP9characterSaIS1_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS1_S3_EEEEPS1_jT_SB_[_ZNSt6vectorIP9characterSaIS1_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS1_S3_EEEEPS1_jT_SB_]+0x5e): undefined reference to `__cxa_begin_catch'
+game.cpp:(.text._ZNSt6vectorIP9characterSaIS1_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS1_S3_EEEEPS1_jT_SB_[_ZNSt6vectorIP9characterSaIS1_EE20_M_allocate_and_copyIN9__gnu_cxx17__normal_iteratorIPKS1_S3_EEEEPS1_jT_SB_]+0x7c): undefined reference to `__cxa_rethrow'
+game.o: In function `coordinate* std::__uninitialized_copy<false>::__uninit_copy<__gnu_cxx::__normal_iterator<coordinate const*, std::vector<coordinate, std::allocator<coordinate> > >, coordinate*>(__gnu_cxx::__normal_iterator<coordinate const*, std::vector<coordinate, std::allocator<coordinate> > >, __gnu_cxx::__normal_iterator<coordinate const*, std::vector<coordinate, std::allocator<coordinate> > >, coordinate*)':
+game.cpp:(.text._ZNSt20__uninitialized_copyILb0EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorIPK10coordinateSt6vectorIS4_SaIS4_EEEEPS4_EET0_T_SD_SC_[_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorIPK10coordinateSt6vectorIS4_SaIS4_EEEEPS4_EET0_T_SD_SC_]+0x60): undefined reference to `__cxa_end_catch'
+game.cpp:(.text._ZNSt20__uninitialized_copyILb0EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorIPK10coordinateSt6vectorIS4_SaIS4_EEEEPS4_EET0_T_SD_SC_[_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorIPK10coordinateSt6vectorIS4_SaIS4_EEEEPS4_EET0_T_SD_SC_]+0x72): undefined reference to `__cxa_begin_catch'
+game.cpp:(.text._ZNSt20__uninitialized_copyILb0EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorIPK10coordinateSt6vectorIS4_SaIS4_EEEEPS4_EET0_T_SD_SC_[_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorIPK10coordinateSt6vectorIS4_SaIS4_EEEEPS4_EET0_T_SD_SC_]+0x89): undefined reference to `__cxa_rethrow'
+game.o: In function `__gnu_cxx::new_allocator<character*>::allocate(unsigned int, void const*)':
+game.cpp:(.text._ZN9__gnu_cxx13new_allocatorIP9characterE8allocateEjPKv[_ZN9__gnu_cxx13new_allocatorIP9characterE8allocateEjPKv]+0x1c): undefined reference to `std::__throw_bad_alloc()'
+game.cpp:(.text._ZN9__gnu_cxx13new_allocatorIP9characterE8allocateEjPKv[_ZN9__gnu_cxx13new_allocatorIP9characterE8allocateEjPKv]+0x2a): undefined reference to `operator new(unsigned int)'
+game.o:(.eh_frame+0x8b): undefined reference to `__gxx_personality_v0'
+main.o: In function `__static_initialization_and_destruction_0(int, int)':
+main.cpp:(.text+0x74): undefined reference to `std::ios_base::Init::Init()'
+main.cpp:(.text+0x8b): undefined reference to `std::ios_base::Init::~Init()'
+main.o:(.eh_frame+0x4b): undefined reference to `__gxx_personality_v0'
+printer.o: In function `printer::init()':
+printer.cpp:(.text+0xfe): undefined reference to `std::cout'
+printer.cpp:(.text+0x103): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x10f): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x11f): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x154): undefined reference to `std::cout'
+printer.cpp:(.text+0x159): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x185): undefined reference to `std::cout'
+printer.cpp:(.text+0x18a): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x1e4): undefined reference to `std::cout'
+printer.cpp:(.text+0x1e9): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x1f5): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x205): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x252): undefined reference to `std::cout'
+printer.cpp:(.text+0x257): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x263): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x273): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x30e): undefined reference to `std::cout'
+printer.cpp:(.text+0x313): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x31f): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x32f): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.o: In function `printer::load_media()':
+printer.cpp:(.text+0x354): undefined reference to `std::allocator<char>::allocator()'
+printer.cpp:(.text+0x36e): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&)'
+printer.cpp:(.text+0x393): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string()'
+printer.cpp:(.text+0x39e): undefined reference to `std::allocator<char>::~allocator()'
+printer.cpp:(.text+0x3b1): undefined reference to `std::cout'
+printer.cpp:(.text+0x3b6): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x3c5): undefined reference to `std::allocator<char>::allocator()'
+printer.cpp:(.text+0x3df): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&)'
+printer.cpp:(.text+0x404): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string()'
+printer.cpp:(.text+0x40f): undefined reference to `std::allocator<char>::~allocator()'
+printer.cpp:(.text+0x422): undefined reference to `std::cout'
+printer.cpp:(.text+0x427): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x43e): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string()'
+printer.cpp:(.text+0x44d): undefined reference to `std::allocator<char>::~allocator()'
+printer.cpp:(.text+0x464): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string()'
+printer.cpp:(.text+0x473): undefined reference to `std::allocator<char>::~allocator()'
+printer.o: In function `load_texture::load_from_file(std::string)':
+printer.cpp:(.text+0x76a): undefined reference to `std::string::c_str() const'
+printer.cpp:(.text+0x791): undefined reference to `std::cout'
+printer.cpp:(.text+0x796): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x7a5): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <char, std::char_traits<char>, std::allocator<char> >(std::basic_ostream<char, std::char_traits<char> >&, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'
+printer.cpp:(.text+0x7b5): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x7c1): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x7d1): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x846): undefined reference to `std::cout'
+printer.cpp:(.text+0x84b): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x85a): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <char, std::char_traits<char>, std::allocator<char> >(std::basic_ostream<char, std::char_traits<char> >&, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'
+printer.cpp:(.text+0x86a): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x876): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.cpp:(.text+0x886): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+printer.o: In function `__static_initialization_and_destruction_0(int, int)':
+printer.cpp:(.text+0x9de): undefined reference to `std::ios_base::Init::Init()'
+printer.cpp:(.text+0x9f5): undefined reference to `std::ios_base::Init::~Init()'
+printer.o:(.eh_frame+0xb3): undefined reference to `__gxx_personality_v0'
+quest.o: In function `__static_initialization_and_destruction_0(int, int)':
+quest.cpp:(.text+0x140): undefined reference to `std::ios_base::Init::Init()'
+quest.cpp:(.text+0x157): undefined reference to `std::ios_base::Init::~Init()'
+quest.o: In function `std::vector<floorplan, std::allocator<floorplan> >::_M_insert_aux(__gnu_cxx::__normal_iterator<floorplan*, std::vector<floorplan, std::allocator<floorplan> > >, floorplan const&)':
+quest.cpp:(.text._ZNSt6vectorI9floorplanSaIS0_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS0_S2_EERKS0_[_ZNSt6vectorI9floorplanSaIS0_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS0_S2_EERKS0_]+0x2b6): undefined reference to `__cxa_end_catch'
+quest.cpp:(.text._ZNSt6vectorI9floorplanSaIS0_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS0_S2_EERKS0_[_ZNSt6vectorI9floorplanSaIS0_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS0_S2_EERKS0_]+0x2c8): undefined reference to `__cxa_begin_catch'
+quest.cpp:(.text._ZNSt6vectorI9floorplanSaIS0_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS0_S2_EERKS0_[_ZNSt6vectorI9floorplanSaIS0_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS0_S2_EERKS0_]+0x341): undefined reference to `__cxa_rethrow'
+quest.o: In function `std::vector<floorplan, std::allocator<floorplan> >::_M_check_len(unsigned int, char const*) const':
+quest.cpp:(.text._ZNKSt6vectorI9floorplanSaIS0_EE12_M_check_lenEjPKc[_ZNKSt6vectorI9floorplanSaIS0_EE12_M_check_lenEjPKc]+0x36): undefined reference to `std::__throw_length_error(char const*)'
+quest.o:(.eh_frame+0x6b): undefined reference to `__gxx_personality_v0'
+collect2: error: ld returned 1 exit status
+make: *** [test] Error 1

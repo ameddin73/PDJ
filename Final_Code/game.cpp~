@@ -32,7 +32,6 @@ void game::run() {
                 running = false;
             handle_event(e);
         }
-        player_.update();
         print.update();
     }
     print.close();

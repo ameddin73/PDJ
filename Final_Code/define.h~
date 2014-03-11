@@ -12,11 +12,14 @@
 
 #define WINDOW_HEIGHT 600
 #define WINDOW_WIDTH 800
-#define LEVEL_HEIGHT 2400
-#define LEVEL_WIDTH 3200
+#define LEVEL_HEIGHT 600
+#define LEVEL_WIDTH 800
 #define FLOOR_HEIGHT 60
 #define FLOOR_WIDTH 80
-#define TILE_SIZE 40
+#define TILE_SIZE 10
+
+#define PLAYER_HEALTH 100
+#define PLAYER_SIZE 16
 
 enum direction {
     left,

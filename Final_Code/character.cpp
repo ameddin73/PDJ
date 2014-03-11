@@ -21,6 +21,8 @@ character::character(string initName, int initX, int initY, int initHealth, int 
     x_ = initX;
     y_ = initY;
     speed = initSpeed;
+    x_vel_ = 0;
+    y_vel_ = 0;
 
     //Calculate damageMod and attackMod
     damageMod = log10((float)xp_);
@@ -33,6 +35,8 @@ void character::changeName(string newName) {
 
 void character::update() {
     //TODO: update GUI for character location
+    x_ += x_vel_;
+    y_ += y_vel_;
 }
 
 string character::name() {
@@ -68,22 +72,26 @@ int character::giveDamage(int hitValue) {
 }
 
 void character::move(enum direction dir) {
-    if(dir == left) {
-        if((x_ - speed) != 0)
-            x_ -= speed;
-    }
-    if(dir == up) {
-        if((y_ - speed) != 0)
-            y_ -= speed;
-    }
-    if(dir == right) {
-        if((x_ + speed) <=  WINDOW_WIDTH)
-            x_ += speed;
-    }
-    if(dir == down) {
-        if((y_ + speed) <= WINDOW_HEIGHT)
-            y_ += speed;
-    }
+    if(dir == dir_left) 
+        x_vel_ = -speed;
+    if(dir == dir_up) 
+        y_vel_ = -speed;
+    if(dir == dir_right) 
+        x_vel_ = speed;
+    if(dir == dir_down) 
+        y_vel_ = speed;
+}
+
+void character::stop_move(enum direction dir) {
+    if(dir == dir_left && x_vel_ == -speed) 
+        x_vel_ = 0;
+    if(dir == dir_up && y_vel_ == -speed) 
+        y_vel_ = 0;
+    if(dir == dir_right && x_vel_ == speed) 
+        x_vel_ = 0;
+    if(dir == dir_down && y_vel_ == speed) 
+        y_vel_ = 0;
+
 }
 
 // // // // // // // // // // // // // // // // // // // // // // // // 

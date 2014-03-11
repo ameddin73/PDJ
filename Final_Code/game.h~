@@ -24,7 +24,6 @@ class game {
     public:
         game();
         void run();
-        void handle_event(SDL_Event e);
     private:
         vector<quest> quests_;
         int current_quest_;

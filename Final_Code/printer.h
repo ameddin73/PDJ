@@ -97,6 +97,7 @@ class printer {
         printer(vector<quest> *quests, character *player, int *current_quest);
         bool init();
         bool load_media();
+        int poll_event(SDL_Event *e);
         void update();
         void close();
 };
