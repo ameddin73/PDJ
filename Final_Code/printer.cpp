@@ -13,16 +13,16 @@
 printer::printer(vector<quest> *quests, character *player, int *current_quest) {
     quests_ = quests;
     player_ = player;
-    current_quest_ = current_quest_;
+    current_quest_ = current_quest;
     tile_clips_[TILE_FLOOR].x = 0;
     tile_clips_[TILE_FLOOR].y = 0;
     tile_clips_[TILE_FLOOR].w = TILE_SIZE;
     tile_clips_[TILE_FLOOR].h = TILE_SIZE;
-    tile_clips_[TILE_WALL].x = 20;
+    tile_clips_[TILE_WALL].x = 40;
     tile_clips_[TILE_WALL].y = 0;
     tile_clips_[TILE_WALL].w = TILE_SIZE;
     tile_clips_[TILE_WALL].h = TILE_SIZE;
-    sprite_clips_[0][0].x = 20;
+    sprite_clips_[0][0].x = 40;
     sprite_clips_[0][0].y = 00;
     sprite_clips_[0][0].w = PLAYER_SIZE;
     sprite_clips_[0][0].h = PLAYER_SIZE;
@@ -84,6 +84,7 @@ bool printer::load_media() {
 }
 
 void printer::update() {
+    Uint32 ticks = get_ticks();
     camera_.x = (player_->x() + PLAYER_SIZE / 2) - WINDOW_WIDTH / 2;
     camera_.y = (player_->y() + PLAYER_SIZE / 2) - WINDOW_HEIGHT / 2;
     if(camera_.x < 0) camera_.x = 0;
@@ -92,19 +93,20 @@ void printer::update() {
     if(camera_.y > LEVEL_HEIGHT - camera_.h) camera_.y = LEVEL_HEIGHT - camera_.h;
     SDL_SetRenderDrawColor(renderer_, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(renderer_);
+    ticks = get_ticks();
+    int terr;
     for(int i = 0; i < FLOOR_HEIGHT; i++) {
         for(int j = 0; j < FLOOR_WIDTH; j++) {
             SDL_Rect render_quad = {j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, TILE_SIZE};
             if(check_collision(camera_, render_quad)) {
                 render_quad.x -= camera_.x;
                 render_quad.y -= camera_.y;
-                quest current = quests_->front();
-                floorplan* curr = current.curr_floor();
-                int terr = curr->terrain_at(i,j);
+                terr = (*quests_)[*current_quest_].curr_floor()->terrain_at(i, j);
                 SDL_RenderCopyEx(renderer_, tiles_.texture(), &tile_clips_[terr], &render_quad, 0.0, NULL, SDL_FLIP_NONE);
             }
         }
     }
+    cout << "For loop: " << get_ticks() - ticks << " ticks\n";
     SDL_Rect player_render = {player_->x() - camera_.x, player_->y() - camera_.y, PLAYER_SIZE, PLAYER_SIZE};
 
     SDL_RenderCopyEx(renderer_, sprites_.texture(), &sprite_clips_[0][0], &player_render, 0.0, NULL, SDL_FLIP_NONE);

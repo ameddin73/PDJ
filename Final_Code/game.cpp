@@ -29,16 +29,12 @@ void game::run() {
     int i = -1;
     Uint32 ticks = 0;
     while(running) {
-        ticks = print.get_ticks();
         while (print.poll_event(&e) != 0) {
             if(e.type == SDL_QUIT || e.key.keysym.sym == SDLK_q)
                 running = false;
             handle_event(e);
         }
-        cout << "While: " << print.get_ticks() - ticks << " ticks\n";
-        ticks = print.get_ticks();
         player_.update();
-        cout << "Player: " << print.get_ticks() - ticks << " ticks\n";
         ticks = print.get_ticks();
         print.update();
         cout << "Printer: " << print.get_ticks() - ticks << " ticks\n";
