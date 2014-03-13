@@ -19,8 +19,9 @@ quest::quest(bool nexus, character *player) {
         floorplans.push_back(nexus);
     } else {
         for(int i = 0; i < 3; ++i) {
-//            floorplans.push_back(new /*TODO create Floorplan*/);
         }
+        floorplan random(false);
+        floorplans.push_back(random);
     }
 }
 

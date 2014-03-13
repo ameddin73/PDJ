@@ -13,7 +13,7 @@
 
 using namespace std;
 
-game::game() : player_("Player 1", 400, 300, PLAYER_HEALTH, 0, TILE_SIZE), print_(&quests_, &player_, &current_quest_) {
+game::game() : player_("Player 1", 400, 300, PLAYER_HEALTH, 0, TILE_SIZE/2, &quests_, &current_quest_), print_(&quests_, &player_, &current_quest_) {
     current_quest_ = 0;
 }
     
@@ -26,14 +26,22 @@ void game::run() {
     print.load_media();
     bool running = true;
     SDL_Event e;
+    int i = -1;
     while(running) {
+        i++;
+        cout << i << "\n";
+        cout << "whiling";
         while (print.poll_event(&e) != 0) {
-            if(e.type == SDL_QUIT)
+            if(e.type == SDL_QUIT || e.key.keysym.sym == SDLK_q)
                 running = false;
             handle_event(e);
         }
+        cout << "===========================whiled\n";
+        cout << "updating player";
         player_.update();
+        cout << "...........................updated\nrendering";
         print.update();
+        cout << "---------------------------rendered\n";
     }
     print.close();
 }

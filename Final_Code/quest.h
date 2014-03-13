@@ -17,6 +17,9 @@
 #include "define.h"
 /// @author anm5465: Alex Meddin
 ///
+
+class character;
+
 class quest {
 
 private:

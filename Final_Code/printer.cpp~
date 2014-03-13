@@ -22,8 +22,8 @@ printer::printer(vector<quest> *quests, character *player, int *current_quest) {
     tile_clips_[TILE_WALL].y = 0;
     tile_clips_[TILE_WALL].w = TILE_SIZE;
     tile_clips_[TILE_WALL].h = TILE_SIZE;
-    sprite_clips_[0][0].x = 20;
-    sprite_clips_[0][0].y = 00;
+    sprite_clips_[0][0].x = 0;
+    sprite_clips_[0][0].y = 0;
     sprite_clips_[0][0].w = PLAYER_SIZE;
     sprite_clips_[0][0].h = PLAYER_SIZE;
     camera_.x = (player_->x() + PLAYER_SIZE / 2) - WINDOW_WIDTH / 2;
@@ -76,7 +76,7 @@ bool printer::load_media() {
         cout << "Can't load tileset!\n";
         success = false;
     }
-    if(!sprites_.load_from_file("tiles.png")) {
+    if(!sprites_.load_from_file("mage.png")) {
         cout << "Can't load sprites!\n";
         success = false;
     } 
@@ -86,10 +86,13 @@ bool printer::load_media() {
 void printer::update() {
     camera_.x = (player_->x() + PLAYER_SIZE / 2) - WINDOW_WIDTH / 2;
     camera_.y = (player_->y() + PLAYER_SIZE / 2) - WINDOW_HEIGHT / 2;
+    //cout << "x: " << camera_.x << " y: " << camera_.y << " x: " << player_->x() << " y: " << player_->y() << "\n";
     if(camera_.x < 0) camera_.x = 0;
     if(camera_.y < 0) camera_.y = 0;
     if(camera_.x > LEVEL_WIDTH - camera_.w) camera_.x = LEVEL_WIDTH - camera_.w;
     if(camera_.y > LEVEL_HEIGHT - camera_.h) camera_.y = LEVEL_HEIGHT - camera_.h;
+    cout << "h: " << camera_.h << "\n";
+    //cout << "x: " << camera_.x << " y: " << camera_.y << " x: " << player_->x() << " y: " << player_->y() << "\n";
     SDL_SetRenderDrawColor(renderer_, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(renderer_);
     for(int i = 0; i < FLOOR_HEIGHT; i++) {

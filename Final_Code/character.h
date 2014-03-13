@@ -12,10 +12,16 @@
 
 // add include files only if needed for these declarations.
 #include <string>
+#include <vector>
+#include "quest.h"
 
 using namespace std;
 /// @author anm5465: Alex Meddin
 ///
+//
+
+class quest;
+
 class character {
 
 private:
@@ -30,6 +36,9 @@ private:
     int x_vel_;
     int y_vel_;
 
+    vector<quest> *quests_;
+    int *current_quest_;
+
 public:
 
     //Creates new Character with described x, y, health and xp
@@ -39,7 +48,7 @@ public:
     //@param int initY
     //@param int initHealth
     //@param int initXP
-    character(string initName, int initX, int initY, int initHealth, int initXP, int initSpeed);
+    character(string initName, int initX, int initY, int initHealth, int initXP, int initSpeed, vector<quest> *quests, int *current_quest);
 
     //Updates character state, moves
     void update();
