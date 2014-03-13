@@ -102,6 +102,7 @@ class printer {
         void update();
         void close();
         bool check_collision(SDL_Rect a, SDL_Rect b);
+        Uint32 get_ticks();
 };
 
 

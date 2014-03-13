@@ -18,7 +18,7 @@ game::game() : player_("Player 1", 400, 300, PLAYER_HEALTH, 0, TILE_SIZE/2, &que
 }
     
 void game::run() {
-    quest nexus(true, &player_);
+    quest nexus(false, &player_);
     quests_.push_back(nexus);
     current_quest_ = 0;
     printer print(&quests_, &player_, &current_quest_);
@@ -27,21 +27,21 @@ void game::run() {
     bool running = true;
     SDL_Event e;
     int i = -1;
+    Uint32 ticks = 0;
     while(running) {
-        i++;
-        cout << i << "\n";
-        cout << "whiling";
+        ticks = print.get_ticks();
         while (print.poll_event(&e) != 0) {
             if(e.type == SDL_QUIT || e.key.keysym.sym == SDLK_q)
                 running = false;
             handle_event(e);
         }
-        cout << "===========================whiled\n";
-        cout << "updating player";
+        cout << "While: " << print.get_ticks() - ticks << " ticks\n";
+        ticks = print.get_ticks();
         player_.update();
-        cout << "...........................updated\nrendering";
+        cout << "Player: " << print.get_ticks() - ticks << " ticks\n";
+        ticks = print.get_ticks();
         print.update();
-        cout << "---------------------------rendered\n";
+        cout << "Printer: " << print.get_ticks() - ticks << " ticks\n";
     }
     print.close();
 }

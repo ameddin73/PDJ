@@ -152,6 +152,8 @@ void printer::close() {
     SDL_Quit();
 }
 
+Uint32 printer::get_ticks() { return SDL_GetTicks(); }
+
 load_texture::load_texture(){
     texture_ = NULL;
     width_ = 0;
