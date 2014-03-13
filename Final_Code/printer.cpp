@@ -95,8 +95,8 @@ void printer::update() {
     SDL_RenderClear(renderer_);
     ticks = get_ticks();
     int terr;
-    for(int i = 0; i < FLOOR_HEIGHT; i++) {
-        for(int j = 0; j < FLOOR_WIDTH; j++) {
+	for (int i = ((camera_.y) % TILE_SIZE)0; i < ((camera_.x + camara.h) % TILE_SIZE); i++) {
+		for (int j = ((camera_.x) % TILE_SIZE); j < ((camera_.x + camara.w) % TILE_SIZE); j++) {
             SDL_Rect render_quad = {j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, TILE_SIZE};
             if(check_collision(camera_, render_quad)) {
                 render_quad.x -= camera_.x;
