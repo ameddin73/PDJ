@@ -3,7 +3,7 @@
 // 
 // 
 // 
-// @author anm5465: Douglas Moyer
+// @author Douglas Moyer and Alex Meddin
 // 
 // // // // // // // // // // // // // // // // // // // // // // // // 
 
