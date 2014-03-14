@@ -32,6 +32,7 @@ int floorplan::vector_contains(int k, coordinate c) {
 
 // Initialise the floorplan with random walls
 floorplan::floorplan(bool nexus) {
+	//create flooplan
     cout << "creating floorplan \n";
     if(nexus) {
         for(int i = 0; i < HEIGHT; i++) {
@@ -86,6 +87,102 @@ floorplan::floorplan(bool nexus) {
             for(int j = 0; j < WIDTH; j++)
                 if(!vector_contains(1, coordinate(i, j))) floorplan_[i][j] = 1;
     }
+	//check tile type
+	//internal
+	for (int i = 1; i < HEIGHT - 1; i++) {
+		for (int j = 1; j < WIDTH - 1; j++) {
+			if ((floorplan_[i - 1][j - 1] == 0) && //top-left
+				(floorplan_[i - 1][j] == 0) && //top
+				(floorplan_[i - 1][j + 1] == 0) && //top-right
+				(floorplan_[i][j + 1] == 0) && //right
+				(floorplan_[i + 1][j + 1] == 0) && //bottom-right
+				(floorplan_[i + 1][j] == 0) && //bottom
+				(floorplan_[i + 1][j - 1] == 0) && //bottom-left
+				(floorplan_[i - 1][j] == 0)) { //left
+				floorplan_[i][j] = tile.tile_single;
+			}
+			if ((floorplan_[i - 1][j - 1] == 1) && //top-left
+				(floorplan_[i - 1][j] == 1) && //top
+				(floorplan_[i - 1][j + 1] == 1) && //top-right
+				(floorplan_[i][j + 1] == 1) && //right
+				(floorplan_[i + 1][j + 1] == 1) && //bottom-right
+				(floorplan_[i + 1][j] == 1) && //bottom
+				(floorplan_[i + 1][j - 1] == 1) && //bottom-left
+				(floorplan_[i - 1][j] == 1)) { //left
+				floorplan_[i][j] = tile.tile_internal;
+			}
+			if (//(floorplan_[i - 1][j - 1] == 0) && //top-left
+				(floorplan_[i - 1][j] == 1) && //top
+				//(floorplan_[i - 1][j + 1] == 0) && //top-right
+				(floorplan_[i][j + 1] == 0) && //right
+				//(floorplan_[i + 1][j + 1] == 0) && //bottom-right
+				(floorplan_[i + 1][j] == 1) && //bottom
+				//(floorplan_[i + 1][j - 1] == 0) && //bottom-left
+				(floorplan_[i - 1][j] == 0)) { //left
+				floorplan_[i][j] = tile.tile_pipe_vert;
+			}
+			if (//(floorplan_[i - 1][j - 1] == 0) && //top-left
+				(floorplan_[i - 1][j] == 0) && //top
+				//(floorplan_[i - 1][j + 1] == 0) && //top-right
+				(floorplan_[i][j + 1] == 1) && //right
+				//(floorplan_[i + 1][j + 1] == 0) && //bottom-right
+				(floorplan_[i + 1][j] == 0) && //bottom
+				//(floorplan_[i + 1][j - 1] == 0) && //bottom-left
+				(floorplan_[i - 1][j] == 1)) { //left
+				floorplan_[i][j] = tile.tile_pipe_whore;
+			}
+			if (//(floorplan_[i - 1][j - 1] == 0) && //top-left
+				(floorplan_[i - 1][j] == 1) && //top
+				(floorplan_[i - 1][j + 1] == 1) && //top-right
+				(floorplan_[i][j + 1] == 1) && //right
+				(floorplan_[i + 1][j + 1] == 1) && //bottom-right
+				(floorplan_[i + 1][j] == 1) && //bottom
+				//(floorplan_[i + 1][j - 1] == 0) && //bottom-left
+				(floorplan_[i - 1][j] == 0)) { //left
+				floorplan_[i][j] = tile.tile_wall_westface;
+			}
+			if ((floorplan_[i - 1][j - 1] == 0) && //top-left
+				(floorplan_[i - 1][j] == 0) && //top
+				(floorplan_[i - 1][j + 1] == 0) && //top-right
+				(floorplan_[i][j + 1] == 1) && //right
+				//(floorplan_[i + 1][j + 1] == 0) && //bottom-right
+				(floorplan_[i + 1][j] == 1) && //bottom
+				//(floorplan_[i + 1][j - 1] == 0) && //bottom-left
+				(floorplan_[i - 1][j] == 1)) { //left
+				floorplan_[i][j] = tile.tile_wall_northface;
+			}
+			if (//(floorplan_[i - 1][j - 1] == 0) && //top-left
+				(floorplan_[i - 1][j] == 1) && //top
+				(floorplan_[i - 1][j + 1] == 0) && //top-right
+				(floorplan_[i][j + 1] == 0) && //right
+				//(floorplan_[i + 1][j + 1] == 0) && //bottom-right
+				(floorplan_[i + 1][j] == 1) && //bottom
+				(floorplan_[i + 1][j - 1] == 0) && //bottom-left
+				(floorplan_[i - 1][j] == 1)) { //left
+				floorplan_[i][j] = tile.tile_wall_eastface;
+			}
+			if (//(floorplan_[i - 1][j - 1] == 0) && //top-left
+				(floorplan_[i - 1][j] == 1) && //top
+				//(floorplan_[i - 1][j + 1] == 0) && //top-right
+				(floorplan_[i][j + 1] == 0) && //right
+				(floorplan_[i + 1][j + 1] == 0) && //bottom-right
+				(floorplan_[i + 1][j] == 0) && //bottom
+				(floorplan_[i + 1][j - 1] == 0) && //bottom-left
+				(floorplan_[i - 1][j] == 0)) { //left
+				floorplan_[i][j] = tile.tile_wall_southface;
+			}
+			if ((floorplan_[i - 1][j - 1] == 0) && //top-left
+				(floorplan_[i - 1][j] == 0) && //top
+				(floorplan_[i - 1][j + 1] == 0) && //top-right
+				(floorplan_[i][j + 1] == 0) && //right
+				(floorplan_[i + 1][j + 1] == 0) && //bottom-right
+				(floorplan_[i + 1][j] == 0) && //bottom
+				(floorplan_[i + 1][j - 1] == 0) && //bottom-left
+				(floorplan_[i - 1][j] == 0)) { //left
+				floorplan_[i][j] = tile.tile_single;
+			}
+		}
+	}
 }
 int floorplan::count_space() {
     check_.clear();
