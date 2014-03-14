@@ -101,7 +101,7 @@ floorplan::floorplan(bool nexus) {
 					//(floorplan_[i + 1][j - 1] == 0) && //bottom-left
 					(floorplan_[i - 1][j] == 0)) { //left
 					floorplan_[i][j] = tile_cap_south;
-				} else
+				} 
 				if (//(floorplan_[i - 1][j - 1] == 0) && //top-left
 					(floorplan_[i - 1][j] == 0) && //top
 					//(floorplan_[i - 1][j + 1] == 0) && //top-right
@@ -111,7 +111,7 @@ floorplan::floorplan(bool nexus) {
 					//(floorplan_[i + 1][j - 1] == 0) && //bottom-left
 					(floorplan_[i - 1][j])) { //left
 					floorplan_[i][j] = tile_pipe_whore;
-				} else
+				} 
 				if (//(floorplan_[i - 1][j - 1] == 0) && //top-left
 					(floorplan_[i - 1][j] == 0) && //top
 					//(floorplan_[i - 1][j + 1] == 0) && //top-right
@@ -121,7 +121,7 @@ floorplan::floorplan(bool nexus) {
 					//(floorplan_[i + 1][j - 1] == 0) && //bottom-left
 					(floorplan_[i - 1][j])) { //left
 					floorplan_[i][j] = tile_cap_east;
-				} else
+				} 
 				if (//(floorplan_[i - 1][j - 1] == 0) && //top-left
 					(floorplan_[i - 1][j]) && //top
 					//(floorplan_[i - 1][j + 1] == 0) && //top-right
@@ -132,7 +132,7 @@ floorplan::floorplan(bool nexus) {
 					(floorplan_[i - 1][j] == 0)) { //left
 					floorplan_[i][j] = tile_pipe_vert;
 				}
-				else
+				
 				if (//(floorplan_[i - 1][j - 1] == 0) && //top-left
 					(floorplan_[i - 1][j] == 0) && //top
 					//(floorplan_[i - 1][j + 1] == 0) && //top-right
@@ -143,7 +143,7 @@ floorplan::floorplan(bool nexus) {
 					(floorplan_[i - 1][j] == 0)) { //left
 					floorplan_[i][j] = tile_cap_north;
 				}
-				else
+				
 				if (//(floorplan_[i - 1][j - 1] == 0) && //top-left
 					(floorplan_[i - 1][j] == 0) && //top
 					//(floorplan_[i - 1][j + 1] == 0) && //top-right
@@ -153,7 +153,7 @@ floorplan::floorplan(bool nexus) {
 					//(floorplan_[i + 1][j - 1] == 0) && //bottom-left
 					(floorplan_[i - 1][j] == 0)) { //left
 					floorplan_[i][j] = tile_cap_west;
-				} else
+				} 
 				if (//(floorplan_[i - 1][j - 1] == 0) && //top-left
 					(floorplan_[i - 1][j]) && //top
 					(floorplan_[i - 1][j + 1] == 0) && //top-right
@@ -163,7 +163,7 @@ floorplan::floorplan(bool nexus) {
 					//(floorplan_[i + 1][j - 1] == 0) && //bottom-left
 					(floorplan_[i - 1][j])) { //left
 					floorplan_[i][j] = tile_attachcorner_southwest;
-				} else
+				} 
 				if (//(floorplan_[i - 1][j - 1] ) && //top-left
 					(floorplan_[i - 1][j]) && //top
 					//(floorplan_[i - 1][j + 1] == 0) && //top-right
@@ -174,7 +174,7 @@ floorplan::floorplan(bool nexus) {
 					(floorplan_[i - 1][j])) { //left
 					floorplan_[i][j] = tile_attachcorner_northwest;
 				}
-				else
+				
 				if (//(floorplan_[i - 1][j - 1] ) && //top-left
 					(floorplan_[i - 1][j]) && //top
 					//(floorplan_[i - 1][j + 1] == 0) && //top-right
@@ -185,7 +185,7 @@ floorplan::floorplan(bool nexus) {
 					(floorplan_[i - 1][j])) { //left
 					floorplan_[i][j] = tile_attachcorner_northeast;
 				}
-				else
+				
 				if ((floorplan_[i - 1][j - 1] == 0) && //top-left
 					(floorplan_[i - 1][j]) && //top
 					//(floorplan_[i - 1][j + 1] == 0) && //top-right
@@ -195,7 +195,7 @@ floorplan::floorplan(bool nexus) {
 					//(floorplan_[i + 1][j - 1] == 0) && //bottom-left
 					(floorplan_[i - 1][j])) { //left
 					floorplan_[i][j] = tile_attachcorner_southeast;
-                } else
+                } 
                 if (//(floorplan_[i - 1][j - 1] == 0) && //top-left
                     (floorplan_[i - 1][j] ) && //top
                     (floorplan_[i - 1][j + 1] ) && //top-right
@@ -205,7 +205,7 @@ floorplan::floorplan(bool nexus) {
                     //(floorplan_[i + 1][j - 1] == 0) && //bottom-left
                     (floorplan_[i - 1][j] == 0)) { //left
                     floorplan_[i][j] = tile_wall_westface;
-                } else
+                } 
                 if (//(floorplan_[i - 1][j - 1] == 0) && //top-left
                     (floorplan_[i - 1][j] == 0) && //top
                     //(floorplan_[i - 1][j + 1] == 0) && //top-right
@@ -215,7 +215,7 @@ floorplan::floorplan(bool nexus) {
                     (floorplan_[i + 1][j - 1] ) && //bottom-left
                     (floorplan_[i - 1][j] )) { //left
                     floorplan_[i][j] = tile_wall_northface;
-                } else
+                } 
                 if ((floorplan_[i - 1][j - 1] ) && //top-left
                     (floorplan_[i - 1][j] ) && //top
                     //(floorplan_[i - 1][j + 1] == 0) && //top-right
@@ -225,7 +225,7 @@ floorplan::floorplan(bool nexus) {
                     (floorplan_[i + 1][j - 1] ) && //bottom-left
                     (floorplan_[i - 1][j] )) { //left
                     floorplan_[i][j] = tile_wall_eastface;
-                } else
+                } 
                 if ((floorplan_[i - 1][j - 1] ) && //top-left
                     (floorplan_[i - 1][j] ) && //top
                     (floorplan_[i - 1][j + 1] ) && //top-right
@@ -235,9 +235,9 @@ floorplan::floorplan(bool nexus) {
                     //(floorplan_[i + 1][j - 1] == 0) && //bottom-left
                     (floorplan_[i - 1][j] )) { //left
                     floorplan_[i][j] = tile_wall_southface;
-                } else
+                } 
                
-                } else
+                 
                 if (//(floorplan_[i - 1][j - 1] == 0) && //top-left
                     (floorplan_[i - 1][j] ) && //top
                     (floorplan_[i - 1][j + 1] ) && //top-right
@@ -247,7 +247,7 @@ floorplan::floorplan(bool nexus) {
                     (floorplan_[i + 1][j - 1] == 0) && //bottom-left
                     (floorplan_[i - 1][j] == 0)) { //left
                     floorplan_[i][j] = tile_wall_southwest;
-                } else
+                } 
                 if ((floorplan_[i - 1][j - 1] ) && //top-left
                     (floorplan_[i - 1][j] ) && //top
                     //(floorplan_[i - 1][j + 1] ) && //top-right
@@ -257,7 +257,7 @@ floorplan::floorplan(bool nexus) {
                     //(floorplan_[i + 1][j - 1] ) && //bottom-left
                     (floorplan_[i - 1][j] )) { //left
                     floorplan_[i][j] = tile_wall_southeast;
-                } else
+                } 
                 if ((floorplan_[i - 1][j - 1] == 0) && //top-left
                     (floorplan_[i - 1][j] == 0) && //top
                     //(floorplan_[i - 1][j + 1] ) && //top-right
@@ -267,7 +267,7 @@ floorplan::floorplan(bool nexus) {
                     //(floorplan_[i + 1][j - 1] == 0) && //bottom-left
                     (floorplan_[i - 1][j] == 0)) { //left
                     floorplan_[i][j] = tile_wall_northwest;
-                } else
+                } 
                 if (//(floorplan_[i - 1][j - 1] == 0) && //top-left
                     (floorplan_[i - 1][j] == 0) && //top
                     (floorplan_[i - 1][j + 1] == 0) && //top-right
@@ -277,7 +277,7 @@ floorplan::floorplan(bool nexus) {
                     (floorplan_[i + 1][j - 1] ) && //bottom-left
                     (floorplan_[i - 1][j] )) { //left
                     floorplan_[i][j] = tile_wall_northeast;
-                } else
+                } 
                 if (//(floorplan_[i - 1][j - 1] == 0) && //top-left
                     (floorplan_[i - 1][j] ) && //top
                     (floorplan_[i - 1][j + 1] == 0) && //top-right
@@ -287,7 +287,7 @@ floorplan::floorplan(bool nexus) {
                     (floorplan_[i + 1][j - 1] == 0) && //bottom-left
                     (floorplan_[i - 1][j] == 0)) { //left
                     floorplan_[i][j] = tile_corner_southwest;
-                } else
+                } 
                 if ((floorplan_[i - 1][j - 1] == 0) && //top-left
                     (floorplan_[i - 1][j] == 0) && //top
                     //(floorplan_[i - 1][j + 1] == 0) && //top-right
@@ -297,7 +297,7 @@ floorplan::floorplan(bool nexus) {
                     //(floorplan_[i + 1][j - 1] == 0) && //bottom-left
                     (floorplan_[i - 1][j] == 0)) { //left
                     floorplan_[i][j] = tile_corner_northwest;
-                } else
+                } 
                 if (//(floorplan_[i - 1][j - 1] == 0) && //top-left
                     (floorplan_[i - 1][j] == 0) && //top
                     (floorplan_[i - 1][j + 1] == 0) && //top-right
@@ -307,7 +307,7 @@ floorplan::floorplan(bool nexus) {
                     (floorplan_[i + 1][j - 1] == 0) && //bottom-left
                     (floorplan_[i - 1][j] )) { //left
                     floorplan_[i][j] = tile_corner_northeast;
-                } else
+                } 
                 if ((floorplan_[i - 1][j - 1] == 0) && //top-left
                     (floorplan_[i - 1][j] ) && //top
                     //(floorplan_[i - 1][j + 1] == 0) && //top-right
@@ -317,7 +317,7 @@ floorplan::floorplan(bool nexus) {
                     //(floorplan_[i + 1][j - 1] == 0) && //bottom-left
                     (floorplan_[i - 1][j] )) { //left
                     floorplan_[i][j] = tile_corner_southeast;
-				} else
+				} 
 				if (//(floorplan_[i - 1][j - 1] == 0) && //top-left
 					(floorplan_[i - 1][j]) && //top
 					(floorplan_[i - 1][j + 1]) && //top-right
@@ -327,7 +327,7 @@ floorplan::floorplan(bool nexus) {
 					(floorplan_[i + 1][j - 1] == 0) && //bottom-left
 					(floorplan_[i - 1][j] == 0)) { //left
 					floorplan_[i][j] = tile_wall_southwest;
-				} 	else
+				} 	
                 if(!(floorplan_[i - 1][j - 1]) && //top-left
 					(!floorplan_[i - 1][j]) && //top
 					(!floorplan_[i - 1][j + 1]) && //top-right
@@ -337,7 +337,7 @@ floorplan::floorplan(bool nexus) {
 					(!floorplan_[i + 1][j - 1]) && //bottom-left
 					(!floorplan_[i - 1][j])) { //left
 					floorplan_[i][j] = tile_single;
-				} else
+				} 
 				if ((floorplan_[i - 1][j - 1]) && //top-left
 					(floorplan_[i - 1][j]) && //top
 					(floorplan_[i - 1][j + 1]) && //top-right
