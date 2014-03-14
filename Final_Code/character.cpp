@@ -30,6 +30,8 @@ character::character(string initName, int initX, int initY, int initHealth, int 
 
     quests_ = quests;
     current_quest_ = current_quest;
+
+    facing_ = dir_down;
 }
 
 void character::changeName(string newName) {
@@ -123,28 +125,46 @@ int character::giveDamage(int hitValue) {
 }
 
 void character::move(enum direction dir) {
-    if(dir == dir_left) 
+    if(dir == dir_left)  
         x_vel_ = -speed;
-    if(dir == dir_up) 
+    if(dir == dir_up)
         y_vel_ = -speed;
-    if(dir == dir_right) 
+    if(dir == dir_right)
         x_vel_ = speed;
-    if(dir == dir_down) 
+    if(dir == dir_down)
         y_vel_ = speed;
+    facing_ = dir;
 }
 
 void character::stop_move(enum direction dir) {
-    if(dir == dir_left && x_vel_ == -speed) 
+    if(dir == dir_left && x_vel_ == -speed) {
         x_vel_ = 0;
-    if(dir == dir_up && y_vel_ == -speed) 
+        if(y_vel_ < 0) facing_ = dir_up;
+        if(y_vel_ > 0) facing_ = dir_down;
+    }
+    if(dir == dir_up && y_vel_ == -speed) {
         y_vel_ = 0;
-    if(dir == dir_right && x_vel_ == speed) 
+        if(x_vel_ < 0) facing_ = dir_left;
+        if(x_vel_ > 0) facing_ = dir_right;
+    }
+    if(dir == dir_right && x_vel_ == speed) {
         x_vel_ = 0;
-    if(dir == dir_down && y_vel_ == speed) 
+        if(y_vel_ < 0) facing_ = dir_up;
+        if(y_vel_ > 0) facing_ = dir_down;
+    }
+    if(dir == dir_down && y_vel_ == speed) {
         y_vel_ = 0;
+        if(x_vel_ < 0) facing_ = dir_left;
+        if(x_vel_ > 0) facing_ = dir_right;
+    }
 
 }
 
+void character::face_direction(enum direction dir) {
+    facing_ = dir;
+}
+
+enum direction character::get_direction() { return facing_; }
 // // // // // // // // // // // // // // // // // // // // // // // // 
 // Version: 
 // $Id$ 

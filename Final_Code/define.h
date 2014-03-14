@@ -21,6 +21,34 @@
 #define PLAYER_HEALTH 100
 #define PLAYER_SIZE 16
 
+enum tile {
+    tile_floor,
+    tile_single,
+    tile_internal,
+    tile_pipe_vert,
+    tile_pipe_whore,
+    tile_wall_westface,
+    tile_wall_northface,
+    tile_wall_eastface,
+    tile_wall_southface,
+    tile_cap_west,
+    tile_cap_north,
+    tile_cap_east,
+    tile_cap_south,
+    tile_wall_southwest,
+    tile_wall_southeast,
+    tile_wall_northwest,
+    tile_wall_northeast,
+    tile_corner_southwest,
+    tile_corner_northwest,
+    tile_corner_northeast,
+    tile_corner_southeast,
+    tile_attachcorner_southwest,
+    tile_attachcorner_northwest,
+    tile_attachcorner_northeast,
+    tile_attachcorner_southeast
+};
+
 enum direction {
     dir_left,
     dir_right,

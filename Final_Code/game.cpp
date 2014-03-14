@@ -13,7 +13,7 @@
 
 using namespace std;
 
-game::game() : player_("Player 1", 400, 300, PLAYER_HEALTH, 0, TILE_SIZE/2, &quests_, &current_quest_), print_(&quests_, &player_, &current_quest_) {
+game::game() : player_("Player 1", 400, 300, PLAYER_HEALTH, 0, TILE_SIZE/4, &quests_, &current_quest_), print_(&quests_, &player_, &current_quest_) {
     current_quest_ = 0;
 }
     
@@ -37,7 +37,6 @@ void game::run() {
         player_.update();
         ticks = print.get_ticks();
         print.update();
-        cout << "Printer: " << print.get_ticks() - ticks << " ticks\n";
     }
     print.close();
 }
@@ -52,6 +51,10 @@ void game::handle_event(SDL_Event e) {
             case SDLK_DOWN: player_.move(dir_down); break;
             case SDLK_LEFT: player_.move(dir_left); break;
             case SDLK_RIGHT: player_.move(dir_right); break;
+            case SDLK_w: player_.face_direction(dir_up); break;
+            case SDLK_a: player_.face_direction(dir_left); break;
+            case SDLK_s: player_.face_direction(dir_down); break;
+            case SDLK_d: player_.face_direction(dir_right); break;
         }
     }
     //If a key was released

@@ -39,6 +39,8 @@ private:
     vector<quest> *quests_;
     int *current_quest_;
 
+    enum direction facing_;
+    int move_direction;
 public:
 
     //Creates new Character with described x, y, health and xp
@@ -96,6 +98,9 @@ public:
     void move(enum direction dir);
 
     void stop_move(enum direction dir);
+
+    void face_direction(enum direction dir);
+    enum direction get_direction();
 };
 
 #endif // CHARACTER_H

@@ -22,8 +22,8 @@ using namespace std;
 
 #define TOTAL_TILES (FLOOR_HEIGHT * FLOOR_WIDTH)
 
-#define TOTAL_SPRITES 1
-#define ANIMATION_FRAMES 1
+#define TOTAL_SPRITES 4
+#define ANIMATION_FRAMES 4 
 /*#define TOTAL_TILE_SPRITES = 15
 
 
@@ -43,7 +43,7 @@ enum tiles {
     TILE_W_JUT,
     TILE_WALL };*/
     
-#define TOTAL_TILE_SPRITES 2
+#define TOTAL_TILE_SPRITES 28 
 
 enum tiles {
     TILE_FLOOR,
@@ -91,6 +91,7 @@ class printer {
         SDL_Renderer* renderer_ = NULL;
         load_texture tiles_;
         load_texture sprites_;
+        load_texture overlay_;
         SDL_Rect tile_clips_[TOTAL_TILE_SPRITES];
         SDL_Rect sprite_clips_[TOTAL_SPRITES][ANIMATION_FRAMES];
         SDL_Rect camera_;
