@@ -43,7 +43,7 @@ enum tiles {
     TILE_W_JUT,
     TILE_WALL };*/
     
-#define TOTAL_TILE_SPRITES 2
+#define TOTAL_TILE_SPRITES 28 
 
 enum tiles {
     TILE_FLOOR,
@@ -85,6 +85,7 @@ class printer {
     private:
         //quest *quests_;
         vector<quest> *quests_;
+        vector<character> *fireballs_;
         character *player_;
         int *current_quest_;
         SDL_Window* window_ = NULL;
@@ -95,8 +96,9 @@ class printer {
         SDL_Rect tile_clips_[TOTAL_TILE_SPRITES];
         SDL_Rect sprite_clips_[TOTAL_SPRITES][ANIMATION_FRAMES];
         SDL_Rect camera_;
+        SDL_Rect fireball_clip;
     public:
-        printer(vector<quest> *quests, character *player, int *current_quest);
+        printer(vector<quest> *quests, character *player, int *current_quest, vector<character> *fireballs);
         bool init();
         bool load_media();
         int poll_event(SDL_Event *e);

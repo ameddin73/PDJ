@@ -85,6 +85,7 @@ class printer {
     private:
         //quest *quests_;
         vector<quest> *quests_;
+        vector<character> *fireballs_;
         character *player_;
         int *current_quest_;
         SDL_Window* window_ = NULL;
@@ -92,11 +93,12 @@ class printer {
         load_texture tiles_;
         load_texture sprites_;
         load_texture overlay_;
+        load_texture fireball_;
         SDL_Rect tile_clips_[TOTAL_TILE_SPRITES];
         SDL_Rect sprite_clips_[TOTAL_SPRITES][ANIMATION_FRAMES];
         SDL_Rect camera_;
     public:
-        printer(vector<quest> *quests, character *player, int *current_quest);
+        printer(vector<quest> *quests, character *player, int *current_quest, vector<character> *fireballs);
         bool init();
         bool load_media();
         int poll_event(SDL_Event *e);

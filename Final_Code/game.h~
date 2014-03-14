@@ -25,7 +25,6 @@ class game {
         game();
         void run();
         void handle_event(SDL_Event e);
-        void shoot_fireball();
     private:
         vector<quest> quests_;
         vector<character> fireballs_;

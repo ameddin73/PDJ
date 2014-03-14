@@ -21,6 +21,8 @@
 #define PLAYER_HEALTH 100
 #define PLAYER_SIZE 16
 
+#define FIREBALL_SIZE 32
+
 enum tile {
     tile_floor,
     tile_single,

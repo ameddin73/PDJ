@@ -29,7 +29,7 @@ enum tile {
     tile_pipe_whore,
     tile_wall_westface,
     tile_wall_northface,
-    tile_wall_westface,
+    tile_wall_eastface,
     tile_wall_southface,
     tile_cap_west,
     tile_cap_north,

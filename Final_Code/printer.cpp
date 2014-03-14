@@ -10,9 +10,10 @@
 #include "printer.h"
 #include <iostream>
 
-printer::printer(vector<quest> *quests, character *player, int *current_quest) {
+printer::printer(vector<quest> *quests, character *player, int *current_quest, vector<character> *fireballs) {
     quests_ = quests;
     player_ = player;
+    fireballs_ = fireballs;
     current_quest_ = current_quest;
     for(int i = 0; i < TOTAL_TILE_SPRITES; i++) {
         tile_clips_[i].x = TILE_SIZE*i;
@@ -61,6 +62,7 @@ bool printer::init() {
                 tiles_.set_renderer(renderer_);
                 sprites_.set_renderer(renderer_);
                 overlay_.set_renderer(renderer_);
+                fireball_.set_renderer(renderer_);
                 
                 int imgFlags = IMG_INIT_PNG;
                 if(!(IMG_Init(imgFlags) & imgFlags)) {
@@ -85,6 +87,10 @@ bool printer::load_media() {
     } 
     if(!overlay_.load_from_file("mask2.png")) {
         cout << "Can't load overlay!\n";
+        success = false;
+    }
+    if(!fireball_.load_from_file("fireball.png")) {
+        cout << "Can't load fireball!\n";
         success = false;
     }
     return success;
@@ -120,6 +126,11 @@ void printer::update() {
     SDL_Rect player_render = {player_->x() - camera_.x, player_->y() - camera_.y, PLAYER_SIZE, PLAYER_SIZE};
     SDL_RenderCopyEx(renderer_, sprites_.texture(), &sprite_clips_[player_->get_direction()][0], &player_render, 0.0, NULL, SDL_FLIP_NONE);
     
+    for(vector<character>::iterator it = fireballs_->begin(); it != fireballs_->end(); ++it) {
+        SDL_Rect fireball_render = {it->x() - camera_.x, it->y() - camera_.y, FIREBALL_SIZE, FIREBALL_SIZE};
+        SDL_RenderCopyEx(renderer_, fireball_.texture(), NULL, &fireball_render, 0.0, NULL, SDL_FLIP_NONE);
+    }
+
     SDL_Rect overlay_clip = {0, 0, WINDOW_WIDTH*2, WINDOW_HEIGHT*2};
     SDL_Rect overlay_render = {player_->x() - camera_.x - WINDOW_WIDTH, player_->y() - camera_.y - WINDOW_HEIGHT, WINDOW_WIDTH*2, WINDOW_HEIGHT*2};
     SDL_RenderCopyEx(renderer_, overlay_.texture(), &overlay_clip, &overlay_render, 0.0, NULL, SDL_FLIP_NONE);

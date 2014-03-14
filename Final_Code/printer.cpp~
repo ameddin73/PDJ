@@ -10,9 +10,10 @@
 #include "printer.h"
 #include <iostream>
 
-printer::printer(vector<quest> *quests, character *player, int *current_quest) {
+printer::printer(vector<quest> *quests, character *player, int *current_quest, vector<character> *fireballs) {
     quests_ = quests;
     player_ = player;
+    fireballs_ = fireballs;
     current_quest_ = current_quest;
     for(int i = 0; i < TOTAL_TILE_SPRITES; i++) {
         tile_clips_[i].x = TILE_SIZE*i;
@@ -118,7 +119,6 @@ void printer::update() {
         }
     }
     SDL_Rect player_render = {player_->x() - camera_.x, player_->y() - camera_.y, PLAYER_SIZE, PLAYER_SIZE};
-    cout << player_->get_direction() << "\n";
     SDL_RenderCopyEx(renderer_, sprites_.texture(), &sprite_clips_[player_->get_direction()][0], &player_render, 0.0, NULL, SDL_FLIP_NONE);
     
     SDL_Rect overlay_clip = {0, 0, WINDOW_WIDTH*2, WINDOW_HEIGHT*2};
