@@ -196,9 +196,9 @@ floorplan::floorplan(bool nexus) {
                 } 
                 if (//(floorplan_[i - 1][j - 1] == 0) && //top-left
                     (floorplan_[i - 1][j] ) && //top
-                    (floorplan_[i - 1][j + 1] ) && //top-right
+                    //(floorplan_[i - 1][j + 1] ) && //top-right
                     (floorplan_[i][j + 1] ) && //right
-                    (floorplan_[i + 1][j + 1] ) && //bottom-right
+                    //(floorplan_[i + 1][j + 1] ) && //bottom-right
                     (floorplan_[i + 1][j] ) && //bottom
                     //(floorplan_[i + 1][j - 1] == 0) && //bottom-left
                     (floorplan_[i - 1][j] == 0)) { //left
