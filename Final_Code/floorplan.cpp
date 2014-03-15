@@ -361,7 +361,7 @@ floorplan::floorplan(bool nexus) {
 					(floorplan_[i + 1][j]) && //bottom
 					(floorplan_[i + 1][j - 1]) && //bottom-left
 					(floorplan_[i][j - 1])) { //left
-					floorplan_[i][j] = tile_attach_northwest_southwest;
+					floorplan_[i][j] = tile_attach_northwest_southeast;
 				}
 				if ((floorplan_[i - 1][j - 1]) && //top-left
 					(floorplan_[i - 1][j]) && //top
@@ -452,6 +452,16 @@ floorplan::floorplan(bool nexus) {
 					!(floorplan_[i + 1][j - 1]) && //bottom-left
 					(floorplan_[i][j - 1])) { //left
 					floorplan_[i][j] = tile_attach2side_south; //39
+				}
+				if (!(floorplan_[i - 1][j - 1]) && //top-left
+					(floorplan_[i - 1][j]) && //top
+					!(floorplan_[i - 1][j + 1]) && //top-right
+					(floorplan_[i][j + 1]) && //right
+					(floorplan_[i + 1][j + 1]) && //bottom-right
+					(floorplan_[i + 1][j]) && //bottom
+					(floorplan_[i + 1][j - 1]) && //bottom-left
+					(floorplan_[i][j - 1])) { //left
+					floorplan_[i][j] = tile_attach2side_north; //39
 				}
             }
             temp_[i][j] = floorplan_[i][j];

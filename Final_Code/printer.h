@@ -43,7 +43,7 @@ enum tiles {
     TILE_W_JUT,
     TILE_WALL };*/
     
-#define TOTAL_TILE_SPRITES 28 
+#define TOTAL_TILE_SPRITES 39 
 
 enum tiles {
     TILE_FLOOR,

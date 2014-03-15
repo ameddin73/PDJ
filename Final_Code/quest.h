@@ -25,7 +25,8 @@ class quest {
 
 private:
     vector<floorplan> floorplans; //Array of Floorplan's in descending order
-    vector< vector<character> > mobs; //Array of enemies on each floor in descending
+    vector< vector<character> > mobs_; //Array of enemies on each floor in descending
+    vector<quest> *quests_;
     //order
     int current_floor; //index of current floor and enemy set
     int diff; //Difficulty level of level (between 1 and 10)
@@ -39,11 +40,12 @@ public:
     //Creates new Quest according to difficulty level
     //Spawns enemies
     //@param float initDiff
-    quest(bool nexus, character *player, *current_quest);
+    quest(bool nexus, character *player,vector<quest> *quests, int *current_quest);
     //Updates enemy count and status of Quest
-    void update();
-    
-    floorplan *curr_floor(Uint32 dt);
+    void update(Uint32 dt);
+    void spawn_monster();    
+    floorplan *curr_floor();
+    //vector<character> *mobs();
 
 };
 
