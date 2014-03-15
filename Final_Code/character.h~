@@ -31,7 +31,6 @@ enum character_type {
 class character {
 
 private:
-    enum character_type type_;
     string name_; //Character name
     int health_; //Character health
     int xp_; //Character XP, effects damage/strength for enemies and player
@@ -59,7 +58,7 @@ public:
     //@param int initY
     //@param int initHealth
     //@param int initXP
-    character(string initName, int initX, int initY, int initHealth, int initXP, int initSpeed, vector<quest> *quests, int *current_quest, enum character_type type);
+    character(string initName, int initX, int initY, int initHealth, int initXP, int initSpeed, vector<quest> *quests, int *current_quest);
 
     //Updates character state, moves
     void update();

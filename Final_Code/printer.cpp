@@ -77,7 +77,7 @@ bool printer::init() {
 
 bool printer::load_media() {
     bool success = true;
-    if(!tiles_.load_from_file("spritesheet.png")) {
+    if(!tiles_.load_from_file("spritesheet2.png")) {
         cout << "Can't load tileset!\n";
         success = false;
     }
@@ -128,7 +128,8 @@ void printer::update() {
     
     for(vector<character>::iterator it = fireballs_->begin(); it != fireballs_->end(); ++it) {
         SDL_Rect fireball_render = {it->x() - camera_.x, it->y() - camera_.y, FIREBALL_SIZE, FIREBALL_SIZE};
-        SDL_RenderCopyEx(renderer_, fireball_.texture(), NULL, &fireball_render, 0.0, NULL, SDL_FLIP_NONE);
+        if(it->exists())
+            SDL_RenderCopyEx(renderer_, fireball_.texture(), NULL, &fireball_render, 0.0, NULL, SDL_FLIP_NONE);
     }
 
     SDL_Rect overlay_clip = {0, 0, WINDOW_WIDTH*2, WINDOW_HEIGHT*2};

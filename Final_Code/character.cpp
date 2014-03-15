@@ -13,7 +13,7 @@
 
 using namespace std;
 
-character::character(string initName, int initX, int initY, int initHealth, int initXP, int initSpeed, vector<quest> *quests, int *current_quest) {
+character::character(string initName, int initX, int initY, int initHealth, int initXP, int initSpeed, vector<quest> *quests, int *current_quest, enum character_type type) {
     //Initializes variables
     name_ = initName;
     health_ = initHealth;
@@ -23,6 +23,7 @@ character::character(string initName, int initX, int initY, int initHealth, int 
     speed = initSpeed;
     x_vel_ = 0;
     y_vel_ = 0;
+    type_ = type;
 
     //Calculate damageMod and attackMod
     damageMod = log10((float)xp_);
@@ -32,6 +33,7 @@ character::character(string initName, int initX, int initY, int initHealth, int 
     current_quest_ = current_quest;
 
     facing_ = dir_down;
+    exists_ = true;
 }
 
 void character::changeName(string newName) {
@@ -52,17 +54,21 @@ void character::update() {
     if(x_vel_ < 0) {
         if((*quests_)[*current_quest_].curr_floor()->terrain_at(j, i)) {
             x_ = TILE_SIZE + (x_ - (x_ % TILE_SIZE)) + 1;
+            if(type_ == character_fireball) exists_ = false;
         }
         else if((*quests_)[*current_quest_].curr_floor()->terrain_at(l, i)) {
             x_ = TILE_SIZE + (x_ - (x_ % TILE_SIZE)) + 1;
+            if(type_ == character_fireball) exists_ = false;
         }
     }
     else if(x_vel_ > 0) {
         if((*quests_)[*current_quest_].curr_floor()->terrain_at(j, k)) {
             x_ = (x_) - ((x_ + PLAYER_SIZE) % TILE_SIZE) - 1;
+            if(type_ == character_fireball) exists_ = false;
         }
         else if((*quests_)[*current_quest_].curr_floor()->terrain_at(l, k)) {
             x_ = (x_) - ((x_ + PLAYER_SIZE) % TILE_SIZE) - 1;
+            if(type_ == character_fireball) exists_ = false;
         }
     }
     y_ += y_vel_;
@@ -77,17 +83,21 @@ void character::update() {
     if(y_vel_ < 0) {
         if((*quests_)[*current_quest_].curr_floor()->terrain_at(j, i)) {
             y_ = TILE_SIZE + (y_ - (y_ % TILE_SIZE)) + 1;
+            if(type_ == character_fireball) exists_ = false;
         }
         else if((*quests_)[*current_quest_].curr_floor()->terrain_at(j, k)) {
             y_ = TILE_SIZE + (y_ - (y_ % TILE_SIZE)) + 1;
+            if(type_ == character_fireball) exists_ = false;
         }
     }
     else if(y_vel_ > 0) {
         if((*quests_)[*current_quest_].curr_floor()->terrain_at(l, i)) {
             y_ = (y_) - ((y_ + PLAYER_SIZE) % TILE_SIZE) - 1;
+            if(type_ == character_fireball) exists_ = false;
         }
         else if((*quests_)[*current_quest_].curr_floor()->terrain_at(l, k)) {
             y_ = (y_) - ((y_ + PLAYER_SIZE) % TILE_SIZE) - 1;
+            if(type_ == character_fireball) exists_ = false;
         }
     }
 }
@@ -165,6 +175,8 @@ void character::face_direction(enum direction dir) {
 }
 
 enum direction character::get_direction() { return facing_; }
+
+bool character::exists(){ return exists_; }
 // // // // // // // // // // // // // // // // // // // // // // // // 
 // Version: 
 // $Id$ 

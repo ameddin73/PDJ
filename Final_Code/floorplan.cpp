@@ -33,7 +33,6 @@ int floorplan::vector_contains(int k, coordinate c) {
 // Initialise the floorplan with random walls
 floorplan::floorplan(bool nexus) {
 	//create flooplan
-    cout << "creating floorplan \n";
     if(nexus) {
         for(int i = 0; i < HEIGHT; i++) {
             for(int j = 0; j < WIDTH; j++) {
@@ -57,7 +56,6 @@ floorplan::floorplan(bool nexus) {
         }
     } else {
         do {
-            cout << "generating.. \n";
             for(int i = 0; i < HEIGHT; i++) {
                 for(int j = 0; j < WIDTH; j++) {
                     temp_[i][j] = 0;

@@ -62,7 +62,7 @@ void game::shoot_fireball() {
     }
     character fireball("Ball o' FIRE", x, y, 1000, 0, TILE_SIZE/4, &quests_, &current_quest_);
     fireball.move(player_.get_direction());
-    fireballs_.push_back(fireball("BALL o' FIRE", 
+    fireballs_.push_back(fireball); 
 }
 void game::handle_event(SDL_Event e) {
     if( e.type == SDL_KEYDOWN && e.key.repeat == 0 )

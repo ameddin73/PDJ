@@ -13,7 +13,7 @@
 
 using namespace std;
 
-game::game() : player_("Player 1", 400, 300, PLAYER_HEALTH, 0, TILE_SIZE/4, &quests_, &current_quest_), print_(&quests_, &player_, &current_quest_, &fireballs_) {
+game::game() : player_("Player 1", 400, 300, PLAYER_HEALTH, 0, TILE_SIZE/4, &quests_, &current_quest_, character_player), print_(&quests_, &player_, &current_quest_, &fireballs_) {
     current_quest_ = 0;
 }
     
@@ -60,7 +60,7 @@ void game::shoot_fireball() {
             x = player_.x() + PLAYER_SIZE;
             y = player_.y() + PLAYER_SIZE/2 - FIREBALL_SIZE/2; break;
     }
-    character fireball("Ball o' FIRE", x, y, 1000, 0, TILE_SIZE/4, &quests_, &current_quest_);
+    character fireball("Ball o' FIRE", x, y, 1000, 0, TILE_SIZE/4, &quests_, &current_quest_, character_fireball);
     fireball.move(player_.get_direction());
     fireballs_.push_back(fireball); 
 }

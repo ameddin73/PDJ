@@ -13,7 +13,7 @@
 
 using namespace std;
 
-character::character(string initName, int initX, int initY, int initHealth, int initXP, int initSpeed, vector<quest> *quests, int *current_quest) {
+character::character(string initName, int initX, int initY, int initHealth, int initXP, int initSpeed, vector<quest> *quests, int *current_quest, enum character_type type) {
     //Initializes variables
     name_ = initName;
     health_ = initHealth;
@@ -23,6 +23,7 @@ character::character(string initName, int initX, int initY, int initHealth, int 
     speed = initSpeed;
     x_vel_ = 0;
     y_vel_ = 0;
+    type_ = type;
 
     //Calculate damageMod and attackMod
     damageMod = log10((float)xp_);
@@ -30,6 +31,9 @@ character::character(string initName, int initX, int initY, int initHealth, int 
 
     quests_ = quests;
     current_quest_ = current_quest;
+
+    facing_ = dir_down;
+    exists_ = true;
 }
 
 void character::changeName(string newName) {
@@ -163,6 +167,8 @@ void character::face_direction(enum direction dir) {
 }
 
 enum direction character::get_direction() { return facing_; }
+
+bool character::exists(){ return exists_; }
 // // // // // // // // // // // // // // // // // // // // // // // // 
 // Version: 
 // $Id$ 
