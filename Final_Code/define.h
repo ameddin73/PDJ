@@ -21,8 +21,6 @@
 #define PLAYER_HEALTH 100
 #define PLAYER_SIZE 16
 
-#define DEFAULT_SPEED 200
-
 #define FIREBALL_SIZE 32
 
 enum tile {
@@ -50,13 +48,24 @@ enum tile {
     tile_attachcorner_southwest, //25
     tile_attachcorner_northwest, //26
     tile_attachcorner_northeast, //27
-    tile_attachcorner_southeast //28
+    tile_attachcorner_southeast, //28
+	tile_attach4side //29
+	tile_attach_northwest_southwest, //30
+	tile_attach_northeast_southeast, //31
+	tile_attach3side_northwest, //32
+	tile_attach3side_northeast, //33
+	tile_attach3side_southeast, //34
+	tile_attach3side_southwest, //35
+	tile_attach2side_west, //36
+	tile_attach2side_north, //37
+	tile_attach2side_east, //38
+	tile_attach3side_south //39
 };
 
 enum direction {
+    dir_left,
     dir_right,
     dir_up,
-    dir_left,
     dir_down
 };
 // add include files only if needed for these declarations.
