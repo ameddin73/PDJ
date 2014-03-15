@@ -165,7 +165,7 @@ floorplan::floorplan(bool nexus) {
 					(floorplan_[i - 1][j]) && //top
 					//(floorplan_[i - 1][j + 1] == 0) && //top-right
 					(floorplan_[i][j + 1]) && //right
-					(floorplan_[i + 1][j + 0] == 0) && //bottom-right
+					(floorplan_[i + 1][j + 1] == 0) && //bottom-right
 					(floorplan_[i + 1][j]) && //bottom
 					//(floorplan_[i + 1][j - 1] == 0) && //bottom-left
 					(floorplan_[i][j - 1])) { //left
@@ -233,8 +233,6 @@ floorplan::floorplan(bool nexus) {
                     (floorplan_[i][j - 1] )) { //left
                     floorplan_[i][j] = tile_wall_southface;
                 } 
-               
-                 
                 if (//(floorplan_[i - 1][j - 1] == 0) && //top-left
                     (floorplan_[i - 1][j] ) && //top
                     (floorplan_[i - 1][j + 1] ) && //top-right
