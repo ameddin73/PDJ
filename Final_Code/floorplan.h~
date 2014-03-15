@@ -42,7 +42,6 @@ class floorplan {
         int count_space();
         coordinate random_space();
         int terrain_at(coordinate c);
-        int temp_terrain_at(int i, int j);
         int terrain_at(int i, int j);
 };
 

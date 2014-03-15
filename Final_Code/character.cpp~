@@ -10,11 +10,12 @@
 #include "define.h"
 #include "character.h"
 #include "math.h"
-
+#include "coordinate.h"
 using namespace std;
 
 character::character(string initName, int initX, int initY, int initHealth, int initXP, int initSpeed, vector<quest> *quests, int *current_quest, enum character_type type) {
     //Initializes variables
+    move_ = true;
     name_ = initName;
     health_ = initHealth;
     xp_ = initXP;
@@ -36,13 +37,20 @@ character::character(string initName, int initX, int initY, int initHealth, int 
     exists_ = true;
 }
 
+void character::random_pos() {
+    coordinate random = (*quests_)[*current_quest_].curr_floor()->random_space();
+    x_ = random.j() * TILE_SIZE;
+    y_ = random.i() * TILE_SIZE;
+}
+
 void character::changeName(string newName) {
     name_ = newName;
 }
 
-void character::update() {
+void character::update(Uint32 dt) {
     //TODO: update GUI for character location
-    x_ += x_vel_;
+    x_ += x_vel_ * (dt/1000.f);
+    //x_ += x_vel_;
     // i = x left
     int i = (x_ - (x_ % TILE_SIZE)) / TILE_SIZE;
     // j = y top
@@ -54,20 +62,25 @@ void character::update() {
     if(x_vel_ < 0) {
         if((*quests_)[*current_quest_].curr_floor()->terrain_at(j, i)) {
             x_ = TILE_SIZE + (x_ - (x_ % TILE_SIZE)) + 1;
+            if(type_ == character_fireball) exists_ = false;
         }
         else if((*quests_)[*current_quest_].curr_floor()->terrain_at(l, i)) {
             x_ = TILE_SIZE + (x_ - (x_ % TILE_SIZE)) + 1;
+            if(type_ == character_fireball) exists_ = false;
         }
     }
     else if(x_vel_ > 0) {
         if((*quests_)[*current_quest_].curr_floor()->terrain_at(j, k)) {
             x_ = (x_) - ((x_ + PLAYER_SIZE) % TILE_SIZE) - 1;
+            if(type_ == character_fireball) exists_ = false;
         }
         else if((*quests_)[*current_quest_].curr_floor()->terrain_at(l, k)) {
             x_ = (x_) - ((x_ + PLAYER_SIZE) % TILE_SIZE) - 1;
+            if(type_ == character_fireball) exists_ = false;
         }
     }
-    y_ += y_vel_;
+    y_ += y_vel_ * (dt/1000.f);
+    //y_ += y_vel_;
     // i = x left
     i = (x_ - (x_ % TILE_SIZE)) / TILE_SIZE;
     // j = y top
@@ -79,17 +92,21 @@ void character::update() {
     if(y_vel_ < 0) {
         if((*quests_)[*current_quest_].curr_floor()->terrain_at(j, i)) {
             y_ = TILE_SIZE + (y_ - (y_ % TILE_SIZE)) + 1;
+            if(type_ == character_fireball) exists_ = false;
         }
         else if((*quests_)[*current_quest_].curr_floor()->terrain_at(j, k)) {
             y_ = TILE_SIZE + (y_ - (y_ % TILE_SIZE)) + 1;
+            if(type_ == character_fireball) exists_ = false;
         }
     }
     else if(y_vel_ > 0) {
         if((*quests_)[*current_quest_].curr_floor()->terrain_at(l, i)) {
             y_ = (y_) - ((y_ + PLAYER_SIZE) % TILE_SIZE) - 1;
+            if(type_ == character_fireball) exists_ = false;
         }
         else if((*quests_)[*current_quest_].curr_floor()->terrain_at(l, k)) {
             y_ = (y_) - ((y_ + PLAYER_SIZE) % TILE_SIZE) - 1;
+            if(type_ == character_fireball) exists_ = false;
         }
     }
 }
@@ -136,6 +153,16 @@ void character::move(enum direction dir) {
     if(dir == dir_down)
         y_vel_ = speed;
     facing_ = dir;
+    move_ = true;
+}
+
+void character::move_degrees(int degrees) {
+    move_direction = degrees;
+    move_ = false;
+    x_vel_ = speed * cos((float)degrees * PI/180.0);
+    y_vel_ = speed * sin((float)degrees * PI/180.0);
+    cout << y_vel_ << "\n";
+    cout << cos(PI/2.0) << "\n";
 }
 
 void character::stop_move(enum direction dir) {

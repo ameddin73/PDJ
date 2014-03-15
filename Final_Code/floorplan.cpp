@@ -344,6 +344,8 @@ floorplan::floorplan(bool nexus) {
 					floorplan_[i][j] = tile_internal;
 				}
             }
+            temp_[i][j] = floorplan_[i][j];
+            if(!temp_[i][j]) temp_[i][j] = rand() % 4;
 		} //ALEX IS A BUTTHOLE!! <3 Topher
 	}//DOUG IS A BUTTHOLE!! <3 Meddin
 }
@@ -423,6 +425,7 @@ coordinate floorplan::random_space() {
 }
 
 int floorplan::terrain_at(coordinate c) { return floorplan_[c.i()][c.j()]; }
+int floorplan::temp_terrain_at(int i, int j) { return temp_[i][j]; }
 int floorplan::terrain_at(int i, int j) { return floorplan_[i][j]; }
 // // // // // // // // // // // // // // // // // // // // // // // // 
 // Version: 

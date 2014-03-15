@@ -34,7 +34,6 @@ void quest::update(Uint32 dt) {
         spawn_monster();
         time_passed = 0;
     }
-    for(vector<character>
 }
 
 void quest::spawn_monster() {
@@ -46,7 +45,6 @@ void quest::spawn_monster() {
         y = random.i();
     } while((x > player_->x() - WINDOW_WIDTH/2 && x < player_->x() + WINDOW_WIDTH/2) || y > player_->y() - WINDOW_HEIGHT/2 && y < player_->y() + WINDOW_HEIGHT/2);
     character zombie("ZOMBEE", x * TILE_SIZE, y * TILE_SIZE, 100, 0, DEFAULT_SPEED, this, current_quest_, character_monster);
-    zombie.move(rand() % 4);
     mobs[current_floor].push_back(zombie);
 }
 

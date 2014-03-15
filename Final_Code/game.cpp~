@@ -13,7 +13,7 @@
 
 using namespace std;
 
-game::game() : player_("Player 1", 400, 300, PLAYER_HEALTH, 0, TILE_SIZE/4, &quests_, &current_quest_), print_(&quests_, &player_, &current_quest_, &fireballs_) {
+game::game() : player_("Player 1", -1, -1, PLAYER_HEALTH, 0, DEFAULT_SPEED*2, &quests_, &current_quest_, character_player), print_(&quests_, &player_, &current_quest_, &fireballs_) {
     current_quest_ = 0;
 }
     
@@ -21,23 +21,25 @@ void game::run() {
     quest nexus(false, &player_);
     quests_.push_back(nexus);
     current_quest_ = 0;
+    player_.random_pos();
     printer print(&quests_, &player_, &current_quest_, &fireballs_);
     print.init();
     print.load_media();
     bool running = true;
     SDL_Event e;
-    int i = -1;
     Uint32 ticks = 0;
+    Uint32 dt = 0;
     while(running) {
+        dt = print.get_ticks() - ticks;
+        ticks = print.get_ticks();
         while (print.poll_event(&e) != 0) {
             if(e.type == SDL_QUIT || e.key.keysym.sym == SDLK_q)
                 running = false;
             handle_event(e);
         }
-        player_.update();
+        player_.update(dt);
         for(vector<character>::iterator it = fireballs_.begin(); it != fireballs_.end(); ++it)
-            it->update();
-        ticks = print.get_ticks();
+            it->update(dt);
         print.update();
     }
     print.close();
@@ -60,8 +62,8 @@ void game::shoot_fireball() {
             x = player_.x() + PLAYER_SIZE;
             y = player_.y() + PLAYER_SIZE/2 - FIREBALL_SIZE/2; break;
     }
-    character fireball("Ball o' FIRE", x, y, 1000, 0, TILE_SIZE/4, &quests_, &current_quest_);
-    fireball.move(player_.get_direction());
+    character fireball("Ball o' FIRE", x, y, 1000, 0, (DEFAULT_SPEED/2) + (rand() % DEFAULT_SPEED), &quests_, &current_quest_, character_fireball);
+    fireball.move_degrees(((rand() % 90) - 45) + 90 * player_.get_direction());
     fireballs_.push_back(fireball); 
 }
 void game::handle_event(SDL_Event e) {

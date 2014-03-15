@@ -10,9 +10,12 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
+#define PI 3.14159
+
 // add include files only if needed for these declarations.
 #include <string>
 #include <vector>
+#include "SDL2/SDL.h"
 #include "quest.h"
 
 using namespace std;
@@ -50,6 +53,7 @@ private:
     int move_direction;
 
     bool exists_;
+    bool move_;
 public:
 
     //Creates new Character with described x, y, health and xp
@@ -60,9 +64,8 @@ public:
     //@param int initHealth
     //@param int initXP
     character(string initName, int initX, int initY, int initHealth, int initXP, int initSpeed, vector<quest> *quests, int *current_quest, enum character_type type);
-
     //Updates character state, moves
-    void update();
+    void update(Uint32 dt);
 
     //Changes name of Character
     //@param char[] newName
@@ -111,6 +114,8 @@ public:
     void face_direction(enum direction dir);
     enum direction get_direction();
     bool exists();
+    void random_pos();
+    void move_degrees(int degrees);
 };
 
 #endif // CHARACTER_H

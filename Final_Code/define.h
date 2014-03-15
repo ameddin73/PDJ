@@ -21,6 +21,8 @@
 #define PLAYER_HEALTH 100
 #define PLAYER_SIZE 16
 
+#define DEFAULT_SPEED 200
+
 #define FIREBALL_SIZE 32
 
 enum tile {
@@ -52,9 +54,9 @@ enum tile {
 };
 
 enum direction {
-    dir_left,
     dir_right,
     dir_up,
+    dir_left,
     dir_down
 };
 // add include files only if needed for these declarations.

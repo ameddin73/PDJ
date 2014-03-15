@@ -77,11 +77,11 @@ bool printer::init() {
 
 bool printer::load_media() {
     bool success = true;
-    if(!tiles_.load_from_file("spritesheet2.png")) {
+    if(!tiles_.load_from_file("spritesheet3.png")) {
         cout << "Can't load tileset!\n";
         success = false;
     }
-    if(!sprites_.load_from_file("mage2.png")) {
+    if(!sprites_.load_from_file("mage3.png")) {
         cout << "Can't load sprites!\n";
         success = false;
     } 
@@ -97,6 +97,7 @@ bool printer::load_media() {
 }
 
 void printer::update() {
+    int curr_tile = 0;
     camera_.x = (player_->x() + PLAYER_SIZE / 2) - WINDOW_WIDTH / 2;
     camera_.y = (player_->y() + PLAYER_SIZE / 2) - WINDOW_HEIGHT / 2;
     if(camera_.x < 0) camera_.x = 0;
@@ -116,11 +117,14 @@ void printer::update() {
     int d = ((camera_.y + camera_.h) - ((camera_.y + camera_.h) % TILE_SIZE)) / TILE_SIZE;
 	for (int i = b; i < d+1; i++) {
 		for (int j = a; j < c+1; j++) {
+            curr_tile++;
             SDL_Rect render_quad = {j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, TILE_SIZE};
             render_quad.x -= camera_.x;
             render_quad.y -= camera_.y;
             terr = (*quests_)[*current_quest_].curr_floor()->terrain_at(i, j);
-            SDL_RenderCopyEx(renderer_, tiles_.texture(), &tile_clips_[terr+3], &render_quad, 0.0, NULL, SDL_FLIP_NONE);
+            if (terr == 0) terr = (*quests_)[*current_quest_].curr_floor()->temp_terrain_at(i, j);
+            else terr += 3;
+            SDL_RenderCopyEx(renderer_, tiles_.texture(), &tile_clips_[terr], &render_quad, 0.0, NULL, SDL_FLIP_NONE);
         }
     }
     SDL_Rect player_render = {player_->x() - camera_.x, player_->y() - camera_.y, PLAYER_SIZE, PLAYER_SIZE};
