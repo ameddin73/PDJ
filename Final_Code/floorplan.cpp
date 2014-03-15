@@ -87,8 +87,8 @@ floorplan::floorplan(bool nexus) {
     }
 	//check tile type
 	//internal
-	for (int j = 1; j < HEIGHT - 1; j++) {
-		for (int i = 1; i < WIDTH - 1; i++) {
+	for (int j = 1; j < WIDTH - 1; j++) {
+		for (int i = 1; i < HEIGHT - 1; i++) {
 			if (floorplan_[i][j]){
 				floorplan_[i][j] = tile_single;
 				if (//(floorplan_[i - 1][j - 1] == 0) && //top-left
