@@ -54,7 +54,9 @@ private:
 
     bool exists_;
     bool move_;
+    int size_;
 public:
+    int size();
 
     //Creates new Character with described x, y, health and xp
     //Calculates damageMod and attackMod
@@ -98,7 +100,7 @@ public:
 
     //Calculates damage and subtracts health of Character when hit
     //@param int hitValue
-    void takeDamage(int hitValue);
+    void take_damage(int hitValue);
 
     //Calculates attack value
     //@param int hitValue
@@ -116,6 +118,7 @@ public:
     bool exists();
     void random_pos();
     void move_degrees(int degrees);
+    bool collides_with(character b);
 };
 
 #endif // CHARACTER_H

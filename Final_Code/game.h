@@ -32,6 +32,8 @@ class game {
         int current_quest_;
         character player_;
         printer print_;
+        void update_fireball(vector<character>::iterator it_f);
+        void delete_dead();
 };
 
 #endif // GAME_H

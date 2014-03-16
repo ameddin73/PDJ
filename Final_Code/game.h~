@@ -25,12 +25,14 @@ class game {
         game();
         void run();
         void handle_event(SDL_Event e);
+        void shoot_fireball();
     private:
         vector<quest> quests_;
         vector<character> fireballs_;
         int current_quest_;
         character player_;
         printer print_;
+        void update_fireball(vector<character>::iterator it_f);
 };
 
 #endif // GAME_H

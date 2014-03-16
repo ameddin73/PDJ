@@ -13,7 +13,7 @@
 
 using namespace std;
 
-game::game() : player_("Player 1", -1, -1, PLAYER_HEALTH, 0, DEFAULT_SPEED*2, &quests_, &current_quest_, character_player), print_(&quests_, &player_, &current_quest_, &fireballs_) {
+game::game() : player_("Player 1", -1, -1, PLAYER_HEALTH, 0, DEFAULT_SPEED, &quests_, &current_quest_, character_player), print_(&quests_, &player_, &current_quest_, &fireballs_) {
     current_quest_ = 0;
 }
     
@@ -39,8 +39,10 @@ void game::run() {
         }
         player_.update(dt);
         quests_[current_quest_].update(dt);
-        for(vector<character>::iterator it = fireballs_.begin(); it != fireballs_.end(); ++it)
+        for(vector<character>::iterator it = fireballs_.begin(); it != fireballs_.end(); ++it) {
             it->update(dt);
+            update_fireball(it);
+        }
         print.update();
     }
     print.close();
@@ -67,6 +69,13 @@ void game::shoot_fireball() {
     fireball.move_degrees(((rand() % 90) - 45) + 90 * player_.get_direction());
     fireballs_.push_back(fireball); 
 }
+
+void game::update_fireball(vector<character>::iterator it_f) {
+    vector<character> *zombs = quests_[current_quest_].mobs();
+    for(vector<character>::iterator it_z = zombs->begin(); it_z != zombs->end(); ++it_z)
+        if(it_z->collides_with(*it_f)) it_z->take_damage(it_f->health());
+}
+
 void game::handle_event(SDL_Event e) {
     if( e.type == SDL_KEYDOWN && e.key.repeat == 0 )
     {

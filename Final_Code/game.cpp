@@ -30,6 +30,7 @@ void game::run() {
     Uint32 ticks = 0;
     Uint32 dt = 0;
     while(running) {
+        delete_dead();
         dt = print.get_ticks() - ticks;
         ticks = print.get_ticks();
         while (print.poll_event(&e) != 0) {
@@ -39,8 +40,10 @@ void game::run() {
         }
         player_.update(dt);
         quests_[current_quest_].update(dt);
-        for(vector<character>::iterator it = fireballs_.begin(); it != fireballs_.end(); ++it)
+        for(vector<character>::iterator it = fireballs_.begin(); it != fireballs_.end(); ++it) {
             it->update(dt);
+            update_fireball(it);
+        }
         print.update();
     }
     print.close();
@@ -67,6 +70,27 @@ void game::shoot_fireball() {
     fireball.move_degrees(((rand() % 90) - 45) + 90 * player_.get_direction());
     fireballs_.push_back(fireball); 
 }
+
+void game::delete_dead() {
+    vector<character>::iterator it = fireballs_.begin();
+    while(it != fireballs_.end()) {
+        if(!it->exists()) fireballs_.erase(it);
+        else it++;
+    }
+   vector<character> *zombs = quests_[current_quest_].mobs();
+   it = zombs->begin();
+   while(it != zombs->end()) {
+       if(!it->exists()) zombs->erase(it);
+       else it++;
+   }
+}
+
+void game::update_fireball(vector<character>::iterator it_f) {
+    vector<character> *zombs = quests_[current_quest_].mobs();
+    for(vector<character>::iterator it_z = zombs->begin(); it_z != zombs->end(); ++it_z)
+        if(it_z->collides_with(*it_f)) it_z->take_damage(it_f->health());
+}
+
 void game::handle_event(SDL_Event e) {
     if( e.type == SDL_KEYDOWN && e.key.repeat == 0 )
     {

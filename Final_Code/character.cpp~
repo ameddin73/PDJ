@@ -35,6 +35,11 @@ character::character(string initName, int initX, int initY, int initHealth, int 
 
     facing_ = dir_down;
     exists_ = true;
+    switch(type) {
+        case character_player: size_ = PLAYER_SIZE; break;
+        case character_fireball: size_ = FIREBALL_SIZE; break;
+        case character_monster: size_ = PLAYER_SIZE; break;
+    }
 }
 
 void character::random_pos() {
@@ -135,8 +140,10 @@ void character::addXP(int plusXP) {
     xp_ += plusXP;
 }
 
-void character::takeDamage(int hitValue) {
-    health_ -= (int)((float)hitValue - damageMod);
+void character::take_damage(int hitValue) {
+    //health_ -= (int)((float)hitValue - damageMod);
+    health_ -= hitValue;
+    if(health_ <= 0) exists_ = false;
 }
 
 int character::giveDamage(int hitValue) {
@@ -160,9 +167,7 @@ void character::move_degrees(int degrees) {
     move_direction = degrees;
     move_ = false;
     x_vel_ = speed * cos((float)degrees * PI/180.0);
-    y_vel_ = speed * sin((float)degrees * PI/180.0);
-    cout << y_vel_ << "\n";
-    cout << cos(PI/2.0) << "\n";
+    y_vel_ = -speed * sin((float)degrees * PI/180.0);
 }
 
 void character::stop_move(enum direction dir) {
@@ -196,6 +201,24 @@ void character::face_direction(enum direction dir) {
 enum direction character::get_direction() { return facing_; }
 
 bool character::exists(){ return exists_; }
+
+int character::size() { return size_; }
+
+bool character::collides_with(character *b) {
+    int leftA = x();
+    int leftB = b->x();
+    int topA = y();
+    int topB = b->y();
+    int rightA = x() + size();
+    int rightB = b->x() + b->size();
+    int bottomA = y() + size();
+    int bottomB = b->y() + size();
+    if(bottomB < topA) return false;
+    if(topB > bottomA) return false;
+    if(rightB < leftA) return false;
+    if(leftB > rightA) return false;
+    return true;
+}
 // // // // // // // // // // // // // // // // // // // // // // // // 
 // Version: 
 // $Id$ 

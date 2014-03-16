@@ -143,7 +143,6 @@ void printer::update() {
     
     vector<character> *zombs = (*quests_)[*current_quest_].mobs();
     for(vector<character>::iterator it = zombs->begin(); it != zombs->end(); it++) {
-        cout << "printed\n";
         SDL_Rect zombie_render = {it->x() - camera_.x, it->y() - camera_.y, PLAYER_SIZE, PLAYER_SIZE};
         if(it->exists())
             SDL_RenderCopyEx(renderer_, zombie_.texture(), &sprite_clips_[it->get_direction()][0], &zombie_render, 0.0, NULL, SDL_FLIP_NONE);

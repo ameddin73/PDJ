@@ -78,7 +78,7 @@ bool printer::init() {
 
 bool printer::load_media() {
     bool success = true;
-    if(!tiles_.load_from_file("spritesheet6.png")) {
+    if(!tiles_.load_from_file("spritesheet7.png")) {
         cout << "Can't load tileset!\n";
         success = false;
     }

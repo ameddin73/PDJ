@@ -94,6 +94,7 @@ class printer {
         load_texture sprites_;
         load_texture overlay_;
         load_texture fireball_;
+        load_texture zombie_;
         SDL_Rect tile_clips_[TOTAL_TILE_SPRITES];
         SDL_Rect sprite_clips_[TOTAL_SPRITES][ANIMATION_FRAMES];
         SDL_Rect camera_;
