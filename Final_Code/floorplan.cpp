@@ -588,6 +588,88 @@ floorplan::floorplan(bool nexus) {
             if(!temp_[i][j]) temp_[i][j] = rand() % 4;
 		} //ALEX IS A BUTTHOLE!! <3 Topher
 	}//DOUG IS A BUTTHOLE!! <3 Meddin
+    if((floorplan_[1][1])) floorplan_[0][0] = tile_internal;
+    else floorplan_[0][0] = tile_attachcorner_southeast;
+    if((floorplan_[1][WIDTH-2])) floorplan_[0][WIDTH-1] = tile_internal;
+    else floorplan_[0][WIDTH-1] = tile_attachcorner_southwest;
+    if((floorplan_[HEIGHT-2][1])) floorplan_[HEIGHT-1][0] = tile_internal;
+    else floorplan_[HEIGHT-1][0] = tile_attachcorner_northeast;
+    if((floorplan_[HEIGHT-2][WIDTH-2])) floorplan_[HEIGHT-1][WIDTH-1] = tile_internal;
+    else floorplan_[HEIGHT-1][WIDTH-1] = tile_attachcorner_northwest;
+    for(int i = 1; i < HEIGHT - 1; i++) {
+        floorplan_[i][0] = tile_wall_eastface;
+        if(floorplan_[i - 1][1] && //top right
+           floorplan_[i][1] && //right
+           floorplan_[i + 1][1]) //bottom right
+            floorplan_[i][0] = tile_internal;
+        if(!floorplan_[i - 1][1] && //top right
+           floorplan_[i][1] && //right
+           floorplan_[i + 1][1]) //bottom right
+            floorplan_[i][0] = tile_attachcorner_southwest;
+        if(!floorplan_[i - 1][1] && //top right
+           floorplan_[i][1] && //right
+           !floorplan_[i + 1][1]) //bottom right
+            floorplan_[i][0] = tile_attach2side_east;
+        if(floorplan_[i - 1][1] && //top right
+           floorplan_[i][1] && //right
+           !floorplan_[i + 1][1]) //bottom right
+            floorplan_[i][0] = tile_attachcorner_northwest;
+
+        floorplan_[i][WIDTH - 1] = tile_wall_westface;
+        if(floorplan_[i - 1][WIDTH - 2] &&
+           floorplan_[i][WIDTH - 2] &&
+           floorplan_[i + 1][WIDTH - 2])
+            floorplan_[i][WIDTH-1] = tile_internal;
+        if(!floorplan_[i - 1][WIDTH - 2] &&
+           floorplan_[i][WIDTH - 2] &&
+           floorplan_[i + 1][WIDTH - 2])
+            floorplan_[i][WIDTH-1] = tile_attachcorner_southeast;
+        if(!floorplan_[i - 1][WIDTH - 2] &&
+           floorplan_[i][WIDTH - 2] &&
+           !floorplan_[i + 1][WIDTH - 2])
+            floorplan_[i][WIDTH-1] = tile_attach2side_west;
+        if(floorplan_[i - 1][WIDTH - 2] &&
+           floorplan_[i][WIDTH - 2] &&
+           !floorplan_[i + 1][WIDTH - 2])
+            floorplan_[i][WIDTH-1] = tile_attachcorner_northeast;
+    }
+    for(int j = 1; j < WIDTH - 1; j++) {
+        floorplan_[0][j] = tile_wall_southface;
+        if(floorplan_[1][j - 1] &&
+           floorplan_[1][j] &&
+           floorplan_[1][j + 1])
+            floorplan_[0][j] = tile_internal;
+        if(!floorplan_[1][j - 1] &&
+           floorplan_[1][j] &&
+           floorplan_[1][j + 1])
+            floorplan_[0][j] = tile_attachcorner_northeast;
+        if(!floorplan_[1][j - 1] &&
+           floorplan_[1][j] &&
+           !floorplan_[1][j + 1])
+            floorplan_[0][j] = tile_attach2side_south;
+        if(floorplan_[1][j - 1] &&
+           floorplan_[1][j] &&
+           !floorplan_[1][j + 1])
+            floorplan_[0][j] = tile_attachcorner_northwest;
+
+        floorplan_[HEIGHT-1][j] = tile_wall_northface;
+        if(floorplan_[HEIGHT - 2][j - 1] &&
+           floorplan_[HEIGHT - 2][j] &&
+           floorplan_[HEIGHT - 2][j + 1])
+            floorplan_[HEIGHT - 1][j] = tile_internal;
+        if(!floorplan_[HEIGHT - 2][j - 1] &&
+           floorplan_[HEIGHT - 2][j] &&
+           floorplan_[HEIGHT - 2][j + 1])
+            floorplan_[HEIGHT - 1][j] = tile_attachcorner_southeast;
+        if(!floorplan_[HEIGHT - 2][j - 1] &&
+           floorplan_[HEIGHT - 2][j] &&
+           !floorplan_[HEIGHT - 2][j + 1])
+            floorplan_[HEIGHT - 1][j] = tile_attach2side_north;
+        if(floorplan_[HEIGHT - 2][j - 1] &&
+           floorplan_[HEIGHT - 2][j] &&
+           !floorplan_[HEIGHT - 2][j + 1])
+            floorplan_[HEIGHT - 1][j] = tile_attachcorner_southwest;
+    }
 }
 int floorplan::count_space() {
     check_.clear();
