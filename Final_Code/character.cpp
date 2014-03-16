@@ -219,6 +219,8 @@ bool character::collides_with(character b) {
     if(leftB > rightA) return false;
     return true;
 }
+
+void character::unspawn() { exists_ = false; }
 // // // // // // // // // // // // // // // // // // // // // // // // 
 // Version: 
 // $Id$ 
