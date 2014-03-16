@@ -463,6 +463,126 @@ floorplan::floorplan(bool nexus) {
 					(floorplan_[i][j - 1])) { //left
 					floorplan_[i][j] = tile_attach2side_north; //39
 				}
+				if ((floorplan_[i - 1][j - 1]) && //top-left
+					(floorplan_[i - 1][j]) && //top
+					//(floorplan_[i - 1][j + 1]) && //top-right
+					!(floorplan_[i][j + 1]) && //right
+					//(floorplan_[i + 1][j + 1]) && //bottom-right
+					(floorplan_[i + 1][j]) && //bottom
+					!(floorplan_[i + 1][j - 1]) && //bottom-left
+					(floorplan_[i][j - 1])) { //left
+					floorplan_[i][j] = tile_wallhook_east_southwest; //40
+				}
+				if (!(floorplan_[i - 1][j - 1]) && //top-left
+					(floorplan_[i - 1][j]) && //top
+					//(floorplan_[i - 1][j + 1]) && //top-right
+					!(floorplan_[i][j + 1]) && //right
+					//(floorplan_[i + 1][j + 1]) && //bottom-right
+					(floorplan_[i + 1][j]) && //bottom
+					!(floorplan_[i + 1][j - 1]) && //bottom-left
+					(floorplan_[i][j - 1])) { //left
+					floorplan_[i][j] = tile_wallhook_east_double; //41
+				}
+				if (!(floorplan_[i - 1][j - 1]) && //top-left
+					(floorplan_[i - 1][j]) && //top
+					//(floorplan_[i - 1][j + 1]) && //top-right
+					!(floorplan_[i][j + 1]) && //right
+					//(floorplan_[i + 1][j + 1]) && //bottom-right
+					(floorplan_[i + 1][j]) && //bottom
+					(floorplan_[i + 1][j - 1]) && //bottom-left
+					(floorplan_[i][j - 1])) { //left
+					floorplan_[i][j] = tile_wallhook_east_northwest; //42
+				}
+				if (!(floorplan_[i - 1][j - 1]) && //top-left
+					(floorplan_[i - 1][j]) && //top
+					(floorplan_[i - 1][j + 1]) && //top-right
+					(floorplan_[i][j + 1]) && //right
+					//(floorplan_[i + 1][j + 1]) && //bottom-right
+					!(floorplan_[i + 1][j]) && //bottom
+					//(floorplan_[i + 1][j - 1]) && //bottom-left
+					(floorplan_[i][j - 1])) { //left
+					floorplan_[i][j] = tile_wallhook_south_northeast; //43
+				}
+				if (!(floorplan_[i - 1][j - 1]) && //top-left
+					(floorplan_[i - 1][j]) && //top
+					!(floorplan_[i - 1][j + 1]) && //top-right
+					(floorplan_[i][j + 1]) && //right
+					//(floorplan_[i + 1][j + 1]) && //bottom-right
+					!(floorplan_[i + 1][j]) && //bottom
+					//(floorplan_[i + 1][j - 1]) && //bottom-left
+					(floorplan_[i][j - 1])) { //left
+					floorplan_[i][j] = tile_wallhook_south_double; //44
+				}
+				if (!(floorplan_[i - 1][j - 1]) && //top-left
+					(floorplan_[i - 1][j]) && //top
+					(floorplan_[i - 1][j + 1]) && //top-right
+					(floorplan_[i][j + 1]) && //right
+					//(floorplan_[i + 1][j + 1]) && //bottom-right
+					!(floorplan_[i + 1][j]) && //bottom
+					//(floorplan_[i + 1][j - 1]) && //bottom-left
+					(floorplan_[i][j - 1])) { //left
+					floorplan_[i][j] = tile_wallhook_south_northwest; //45
+				}
+				if (//(floorplan_[i - 1][j - 1]) && //top-left
+					(floorplan_[i - 1][j]) && //top
+					!(floorplan_[i - 1][j + 1]) && //top-right
+					(floorplan_[i][j + 1]) && //right
+					(floorplan_[i + 1][j + 1]) && //bottom-right
+					(floorplan_[i + 1][j]) && //bottom
+					//(floorplan_[i + 1][j - 1]) && //bottom-left
+					(floorplan_[i][j - 1])) { //left
+					floorplan_[i][j] = tile_wallhook_west_northeast; //46
+				}
+				if (//(floorplan_[i - 1][j - 1]) && //top-left
+					(floorplan_[i - 1][j]) && //top
+					!(floorplan_[i - 1][j + 1]) && //top-right
+					(floorplan_[i][j + 1]) && //right
+					!(floorplan_[i + 1][j + 1]) && //bottom-right
+					(floorplan_[i + 1][j]) && //bottom
+					//(floorplan_[i + 1][j - 1]) && //bottom-left
+					(floorplan_[i][j - 1])) { //left
+					floorplan_[i][j] = tile_wallhook_west_northeast; //47
+				}
+				if (//(floorplan_[i - 1][j - 1]) && //top-left
+					(floorplan_[i - 1][j]) && //top
+					(floorplan_[i - 1][j + 1]) && //top-right
+					(floorplan_[i][j + 1]) && //right
+					!(floorplan_[i + 1][j + 1]) && //bottom-right
+					(floorplan_[i + 1][j]) && //bottom
+					//(floorplan_[i + 1][j - 1]) && //bottom-left
+					!(floorplan_[i][j - 1])) { //left
+					floorplan_[i][j] = tile_wallhook_west_southeast; //48
+				}
+				if (//(floorplan_[i - 1][j - 1]) && //top-left
+					!(floorplan_[i - 1][j]) && //top
+					//(floorplan_[i - 1][j + 1]) && //top-right
+					(floorplan_[i][j + 1]) && //right
+					(floorplan_[i + 1][j + 1]) && //bottom-right
+					(floorplan_[i + 1][j]) && //bottom
+					!(floorplan_[i + 1][j - 1]) && //bottom-left
+					(floorplan_[i][j - 1])) { //left
+					floorplan_[i][j] = tile_wallhook_west_southeast; //49
+				}
+				if (//(floorplan_[i - 1][j - 1]) && //top-left
+					!(floorplan_[i - 1][j]) && //top
+					//(floorplan_[i - 1][j + 1]) && //top-right
+					(floorplan_[i][j + 1]) && //right
+					!(floorplan_[i + 1][j + 1]) && //bottom-right
+					(floorplan_[i + 1][j]) && //bottom
+					!(floorplan_[i + 1][j - 1]) && //bottom-left
+					(floorplan_[i][j - 1])) { //left
+					floorplan_[i][j] = tile_wallhook_west_southeast; //50
+				}
+				if (//(floorplan_[i - 1][j - 1]) && //top-left
+					!(floorplan_[i - 1][j]) && //top
+					//(floorplan_[i - 1][j + 1]) && //top-right
+					(floorplan_[i][j + 1]) && //right
+					!(floorplan_[i + 1][j + 1]) && //bottom-right
+					(floorplan_[i + 1][j]) && //bottom
+					(floorplan_[i + 1][j - 1]) && //bottom-left
+					(floorplan_[i][j - 1])) { //left
+					floorplan_[i][j] = tile_wallhook_west_southeast; //51
+				}
             }
             temp_[i][j] = floorplan_[i][j];
             if(!temp_[i][j]) temp_[i][j] = rand() % 4;
