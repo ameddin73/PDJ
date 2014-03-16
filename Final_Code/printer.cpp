@@ -133,7 +133,7 @@ void printer::update() {
         }
     }
     SDL_Rect player_render = {player_->x() - camera_.x, player_->y() - camera_.y, PLAYER_SIZE, PLAYER_SIZE};
-    SDL_RenderCopyEx(renderer_, sprites_.texture(), &sprite_clips_[player_->get_direction()][0], &player_render, 0.0, NULL, SDL_FLIP_NONE);
+    SDL_RenderCopyEx(renderer_, sprites_.texture(), &sprite_clips_[player_->get_direction()][player_->animation_state()], &player_render, 0.0, NULL, SDL_FLIP_NONE);
     
     for(vector<character>::iterator it = fireballs_->begin(); it != fireballs_->end(); ++it) {
         SDL_Rect fireball_render = {it->x() - camera_.x, it->y() - camera_.y, FIREBALL_SIZE, FIREBALL_SIZE};

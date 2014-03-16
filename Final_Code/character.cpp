@@ -15,6 +15,8 @@ using namespace std;
 
 character::character(string initName, int initX, int initY, int initHealth, int initXP, int initSpeed, vector<quest> *quests, int *current_quest, enum character_type type) {
     //Initializes variables
+    time_passed_ = 0;
+    animation_state_ = 0;
     move_ = true;
     name_ = initName;
     health_ = initHealth;
@@ -52,7 +54,15 @@ void character::changeName(string newName) {
     name_ = newName;
 }
 
+
+
 void character::update(Uint32 dt) {
+    if(type_ == character_player && (time_passed_ += dt) > 1000/12) {
+        animation_state_ = (animation_state_ + 1) % 4;
+        time_passed_ = 0;
+    }
+    if(x_vel_ == 0 && y_vel_ == 0) animation_state_ = 0;
+
     //TODO: update GUI for character location
     x_ += x_vel_ * (dt/1000.f);
     //x_ += x_vel_;
@@ -221,6 +231,8 @@ bool character::collides_with(character b) {
 }
 
 void character::unspawn() { exists_ = false; }
+
+int character::animation_state() { return animation_state_; }
 // // // // // // // // // // // // // // // // // // // // // // // // 
 // Version: 
 // $Id$ 

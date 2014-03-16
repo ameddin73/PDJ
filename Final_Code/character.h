@@ -34,6 +34,7 @@ enum character_type {
 class character {
 
 private:
+    int time_passed_;
     enum character_type type_;
     string name_; //Character name
     int health_; //Character health
@@ -55,8 +56,11 @@ private:
     bool exists_;
     bool move_;
     int size_;
+
+    int animation_state_;
 public:
     int size();
+    int animation_state();
 
     //Creates new Character with described x, y, health and xp
     //Calculates damageMod and attackMod

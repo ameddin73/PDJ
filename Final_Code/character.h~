@@ -55,8 +55,11 @@ private:
     bool exists_;
     bool move_;
     int size_;
+
+    int animation_state_;
 public:
     int size();
+    int animation_state();
 
     //Creates new Character with described x, y, health and xp
     //Calculates damageMod and attackMod
@@ -118,7 +121,8 @@ public:
     bool exists();
     void random_pos();
     void move_degrees(int degrees);
-    bool collides_with(character *b);
+    bool collides_with(character b);
+	void unspawn();
 };
 
 #endif // CHARACTER_H
