@@ -119,6 +119,7 @@ public:
     void random_pos();
     void move_degrees(int degrees);
     bool collides_with(character b);
+	void unspawn();
 };
 
 #endif // CHARACTER_H
