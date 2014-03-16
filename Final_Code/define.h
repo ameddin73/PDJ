@@ -59,7 +59,19 @@ enum tile {
 	tile_attach2side_west, //36
 	tile_attach2side_north, //37
 	tile_attach2side_east, //38
-	tile_attach2side_south //39
+	tile_attach2side_south, //39
+	tile_wallhook_east_southwest, //40
+	tile_wallhook_east_double, //41
+	tile_wallhook_east_northwest, //42
+	tile_wallhook_south_northeast, //43
+	tile_wallhook_south_double, //44
+	tile_wallhook_south_northwest, //45
+	tile_wallhook_west_northeast, //46
+	tile_wallhook_west_double, //47
+	tile_wallhook_west_southeast, //48
+	tile_wallhook_north_southwest, //49
+	tile_wallhook_north_double, //50
+	tile_wallhook_north_southeast //51
 };
 
 enum direction {
