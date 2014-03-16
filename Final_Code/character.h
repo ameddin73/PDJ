@@ -28,7 +28,8 @@ class quest;
 enum character_type {
     character_player,
     character_fireball,
-    character_monster
+    character_monster,
+    character_panda
 };
 
 class character {
