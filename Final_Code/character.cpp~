@@ -57,10 +57,16 @@ void character::changeName(string newName) {
 
 
 void character::update(Uint32 dt) {
-    if(type_ == character_player && (time_passed_ += dt) > 1000/12) {
+    if(type_ == character_player && (time_passed_ += dt) > 1000/12) { //player animation
         animation_state_ = (animation_state_ + 1) % 4;
         time_passed_ = 0;
     }
+    if(x_vel_ == 0 && y_vel_ == 0) animation_state_ = 0;
+	if (type_ == character_fireball && (time_passed_ += dt) > 1000 / 12) { //fireball animation
+		animation_state_ = (animation_state_ + 1) % 5;
+		time_passed_ = 0;
+	}
+	if (x_vel_ == 0 && y_vel_ == 0) animation_state_ = 0;
 
     //TODO: update GUI for character location
     x_ += x_vel_ * (dt/1000.f);

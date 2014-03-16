@@ -124,6 +124,7 @@ public:
     void move_degrees(int degrees);
     bool collides_with(character b);
 	void unspawn();
+    int degrees();
 };
 
 #endif // CHARACTER_H

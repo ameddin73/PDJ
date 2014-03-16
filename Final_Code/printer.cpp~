@@ -29,6 +29,12 @@ printer::printer(vector<quest> *quests, character *player, int *current_quest, v
             sprite_clips_[i][j].h = PLAYER_SIZE;
         }
     }
+    for (int i = 0; i < FIREBALL_ANIMATION_FRAMES; i++){
+        fireball_clips_[i].x = i * FIREBALL_SIZE;
+        fireball_clips_[i].y = 0;
+        fireball_clips_[i].w = FIREBALL_SIZE;
+        fireball_clips_[i].h = FIREBALL_SIZE;
+    }
     camera_.x = (player_->x() + PLAYER_SIZE / 2) - WINDOW_WIDTH / 2;
     camera_.y = (player_->y() + PLAYER_SIZE / 2) - WINDOW_HEIGHT / 2;
     camera_.w = WINDOW_WIDTH;
@@ -90,7 +96,7 @@ bool printer::load_media() {
         cout << "Can't load overlay!\n";
         success = false;
     }
-    if(!fireball_.load_from_file("fireball.png")) {
+    if(!fireball_.load_from_file("fireballsprite.png")) {
         cout << "Can't load fireball!\n";
         success = false;
     }
@@ -133,12 +139,12 @@ void printer::update() {
         }
     }
     SDL_Rect player_render = {player_->x() - camera_.x, player_->y() - camera_.y, PLAYER_SIZE, PLAYER_SIZE};
-    SDL_RenderCopyEx(renderer_, sprites_.texture(), &sprite_clips_[player_->get_direction()][0], &player_render, 0.0, NULL, SDL_FLIP_NONE);
+    SDL_RenderCopyEx(renderer_, sprites_.texture(), &sprite_clips_[player_->get_direction()][player_->animation_state()], &player_render, 0.0, NULL, SDL_FLIP_NONE);
     
     for(vector<character>::iterator it = fireballs_->begin(); it != fireballs_->end(); ++it) {
         SDL_Rect fireball_render = {it->x() - camera_.x, it->y() - camera_.y, FIREBALL_SIZE, FIREBALL_SIZE};
         if(it->exists())
-            SDL_RenderCopyEx(renderer_, fireball_.texture(), NULL, &fireball_render, 0.0, NULL, SDL_FLIP_NONE);
+            SDL_RenderCopyEx(renderer_, fireball_.texture(), &fireball_clips_[it->animation_state()], &fireball_render, -(it->degrees + 90), NULL, SDL_FLIP_NONE);
     }
     
     vector<character> *zombs = (*quests_)[*current_quest_].mobs();

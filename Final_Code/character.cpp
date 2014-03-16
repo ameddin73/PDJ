@@ -54,7 +54,7 @@ void character::changeName(string newName) {
     name_ = newName;
 }
 
-
+int character::degrees() { return move_direction; }
 
 void character::update(Uint32 dt) {
     if(type_ == character_player && (time_passed_ += dt) > 1000/12) { //player animation

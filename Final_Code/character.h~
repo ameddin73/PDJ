@@ -34,6 +34,7 @@ enum character_type {
 class character {
 
 private:
+    int time_passed_;
     enum character_type type_;
     string name_; //Character name
     int health_; //Character health
