@@ -40,6 +40,9 @@ void quest::update(Uint32 dt) {
     for(vector<character>::iterator it = mobs_[current_floor].begin(); it != mobs_[current_floor].end(); ++it) {
         it->move_degrees((180/PI)*atan2(it->y() - player_->y(), player_->x() - it->x()));
         it->update(dt);
+		if (it->collides_with(*player)) {
+			it->take_damage(1000000);
+		}
     }
 }
 
