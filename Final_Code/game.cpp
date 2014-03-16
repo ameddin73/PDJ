@@ -88,7 +88,10 @@ void game::delete_dead() {
 void game::update_fireball(vector<character>::iterator it_f) {
     vector<character> *zombs = quests_[current_quest_].mobs();
     for(vector<character>::iterator it_z = zombs->begin(); it_z != zombs->end(); ++it_z)
-        if(it_z->collides_with(*it_f)) it_z->take_damage(it_f->health());
+	if (it_z->collides_with(*it_f)) {
+		it_z->take_damage(it_f->health());
+		*it_f.unspawn();
+	}
 }
 
 void game::handle_event(SDL_Event e) {
