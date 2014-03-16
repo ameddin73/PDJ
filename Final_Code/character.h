@@ -29,7 +29,8 @@ enum character_type {
     character_player,
     character_fireball,
     character_monster,
-    character_panda
+    character_panda,
+    character_trapdoor
 };
 
 class character {
@@ -128,6 +129,8 @@ public:
     int degrees();
     void set_position(int x, int y);
     void panda_hit_wall();
+    void stop();
+    bool is_moving();
 };
 
 #endif // CHARACTER_H

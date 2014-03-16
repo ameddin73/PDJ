@@ -127,6 +127,9 @@ public:
 	void unspawn();
     int degrees();
     void set_position(int x, int y);
+    void panda_hit_wall();
+    void stop();
+    bool is_moving();
 };
 
 #endif // CHARACTER_H

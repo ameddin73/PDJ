@@ -41,6 +41,10 @@ printer::printer(vector<quest> *quests, character *player, int *current_quest, v
             panda_clips_[i][j].y = i * PANDA_SIZE;
             panda_clips_[i][j].w = PANDA_SIZE;
             panda_clips_[i][j].h = PANDA_SIZE;
+            zombie_clips_[i][j].x = j * ZOMBIE_SIZE;
+            zombie_clips_[i][j].y = i * ZOMBIE_SIZE;
+            zombie_clips_[i][j].w = ZOMBIE_SIZE;
+            zombie_clips_[i][j].h = ZOMBIE_SIZE;
         }
     }
     camera_.x = (player_->x() + PLAYER_SIZE / 2) - WINDOW_WIDTH / 2;
@@ -109,7 +113,7 @@ bool printer::load_media() {
         cout << "Can't load fireball!\n";
         success = false;
     }
-    if(!zombie_.load_from_file("zombie.png")) {
+    if(!zombie_.load_from_file("zombiesheet.png")) {
         cout << "Can't load zombie!\n";
         success = false;
     }

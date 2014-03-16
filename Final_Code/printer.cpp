@@ -41,6 +41,10 @@ printer::printer(vector<quest> *quests, character *player, int *current_quest, v
             panda_clips_[i][j].y = i * PANDA_SIZE;
             panda_clips_[i][j].w = PANDA_SIZE;
             panda_clips_[i][j].h = PANDA_SIZE;
+            zombie_clips_[i][j].x = j * ZOMBIE_SIZE;
+            zombie_clips_[i][j].y = i * ZOMBIE_SIZE;
+            zombie_clips_[i][j].w = ZOMBIE_SIZE;
+            zombie_clips_[i][j].h = ZOMBIE_SIZE;
         }
     }
     camera_.x = (player_->x() + PLAYER_SIZE / 2) - WINDOW_WIDTH / 2;
@@ -109,7 +113,7 @@ bool printer::load_media() {
         cout << "Can't load fireball!\n";
         success = false;
     }
-    if(!zombie_.load_from_file("zombie.png")) {
+    if(!zombie_.load_from_file("zombiesheet.png")) {
         cout << "Can't load zombie!\n";
         success = false;
     }
@@ -162,14 +166,14 @@ void printer::update() {
     
     vector<character> *zombs = (*quests_)[*current_quest_].mobs();
     for(vector<character>::iterator it = zombs->begin(); it != zombs->end(); it++) {
-        SDL_Rect zombie_render = {it->x() - camera_.x, it->y() - camera_.y, PLAYER_SIZE, PLAYER_SIZE};
+        SDL_Rect zombie_render = {it->x() - camera_.x, it->y() - camera_.y, ZOMBIE_SIZE, ZOMBIE_SIZE};
         if(it->exists())
-            SDL_RenderCopyEx(renderer_, zombie_.texture(), &sprite_clips_[it->get_direction()][0], &zombie_render, 0.0, NULL, SDL_FLIP_NONE);
+            SDL_RenderCopyEx(renderer_, zombie_.texture(), &zombie_clips_[it->get_direction()][it->animation_state()], &zombie_render, 0.0, NULL, SDL_FLIP_NONE);
     }
     
     character* panda = (*quests_)[*current_quest_].panda();
     SDL_Rect panda_render = {panda->x() - camera_.x, panda->y() - camera_.y, PANDA_SIZE, PANDA_SIZE};
-    SDL_RenderCopyEx(renderer_, panda_.texture(), &panda_clips_[panda->animation_state()][panda->get_direction()], &panda_render, 0.0, NULL, SDL_FLIP_NONE);
+    SDL_RenderCopyEx(renderer_, panda_.texture(), &panda_clips_[panda->get_direction()][panda->animation_state()], &panda_render, 0.0, NULL, SDL_FLIP_NONE);
 
 
     SDL_Rect overlay_clip = {0, 0, WINDOW_WIDTH*2, WINDOW_HEIGHT*2};

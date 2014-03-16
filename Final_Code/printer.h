@@ -104,6 +104,7 @@ class printer {
         SDL_Rect sprite_clips_[TOTAL_SPRITES][ANIMATION_FRAMES];
         SDL_Rect fireball_clips_[FIREBALL_ANIMATION_FRAMES];
         SDL_Rect panda_clips_[TOTAL_SPRITES][PANDA_ANIMATION_FRAMES];
+        SDL_Rect zombie_clips_[TOTAL_SPRITES][PANDA_ANIMATION_FRAMES];
         SDL_Rect camera_;
     public:
         printer(vector<quest> *quests, character *player, int *current_quest, vector<character> *fireballs);

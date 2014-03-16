@@ -24,6 +24,8 @@
 #define FIREBALL_SIZE 32
 #define DEFAULT_SPEED 200
 #define PANDA_SIZE 32
+
+#define ZOMBIE_SIZE 24
 enum tile {
     tile_floor, //0
     tile_single, //5

@@ -40,9 +40,11 @@ character::character(string initName, int initX, int initY, int initHealth, int 
     switch(type) {
         case character_player: size_ = PLAYER_SIZE; break;
         case character_fireball: size_ = FIREBALL_SIZE; break;
-        case character_monster: size_ = PLAYER_SIZE; break;
+        case character_monster: size_ = ZOMBIE_SIZE; break;
         case character_panda: size_ = PANDA_SIZE; break;
     }
+    if(type_ == character_panda)
+        move_degrees(rand() % 360);
 }
 
 void character::random_pos() {
@@ -57,13 +59,13 @@ void character::changeName(string newName) {
 
 int character::degrees() { return move_direction; }
 
+void character::stop() { x_vel_ = 0; y_vel_ = 0;}
+
+bool character::is_moving() {return (x_vel_ == 0 && y_vel_ == 0);}
+
 void character::panda_hit_wall() {
     if(type_ == character_panda) {
         move_degrees(rand() % 360);
-        if (x_vel_ < 0 && abs(x_vel_) > abs(y_vel_)) face_direction(dir_left);
-        if (x_vel_ > 0 && abs(x_vel_) > abs(y_vel_)) face_direction(dir_right);
-        if (y_vel_ < 0 && abs(y_vel_) > abs(x_vel_)) face_direction(dir_up);
-        if (y_vel_ > 0 && abs(y_vel_) > abs(x_vel_)) face_direction(dir_down);
     }
 }
 
@@ -76,18 +78,13 @@ void character::update(Uint32 dt) {
 		animation_state_ = (animation_state_ + 1) % 5;
 		time_passed_ = 0;
 	}
-	if (type_ == character_panda && (time_passed_ += dt) > 1000 / 6) { //fireball animation
-		animation_state_ = (animation_state_ + 1) % 4;
+	if ((type_ == character_panda || type_ == character_monster) && (time_passed_ += dt) > 1000 / 6) { //fireball animation
+		animation_state_ = (animation_state_ + 1) % 3;
 		time_passed_ = 0;
 	}
     if (type_ == character_panda) {
-        if(x_vel_ == 0 && y_vel_ == 0) {
-            move_degrees(rand() % 360);
-            if (x_vel_ < 0 && abs(x_vel_) > abs(y_vel_)) face_direction(dir_left);
-            if (x_vel_ > 0 && abs(x_vel_) > abs(y_vel_)) face_direction(dir_right);
-            if (y_vel_ < 0 && abs(y_vel_) > abs(x_vel_)) face_direction(dir_up);
-            if (y_vel_ > 0 && abs(y_vel_) > abs(x_vel_)) face_direction(dir_down);
-        }
+        if(time_passed_ == 0)
+        cout << "x: " << x_ / TILE_SIZE << " y: " << y_ / TILE_SIZE << "\n";
     }
 	if (x_vel_ == 0 && y_vel_ == 0) animation_state_ = 0;
 
@@ -99,9 +96,9 @@ void character::update(Uint32 dt) {
     // j = y top
     int j = (y_ - (y_ % TILE_SIZE)) / TILE_SIZE;
     // k = x right
-    int k = ((x_ + PLAYER_SIZE) - ((x_ + PLAYER_SIZE) % TILE_SIZE)) / TILE_SIZE;
+    int k = ((x_ + size_) - ((x_ + size_) % TILE_SIZE)) / TILE_SIZE;
     // l = y bot
-    int l = ((y_ + PLAYER_SIZE) - ((y_ + PLAYER_SIZE) % TILE_SIZE)) / TILE_SIZE;
+    int l = ((y_ + size_) - ((y_ + size_) % TILE_SIZE)) / TILE_SIZE;
     if(x_vel_ < 0) {
         if((*quests_)[*current_quest_].curr_floor()->terrain_at(j, i)) {
             x_ = TILE_SIZE + (x_ - (x_ % TILE_SIZE)) + 1;
@@ -116,12 +113,12 @@ void character::update(Uint32 dt) {
     }
     else if(x_vel_ > 0) {
         if((*quests_)[*current_quest_].curr_floor()->terrain_at(j, k)) {
-            x_ = (x_) - ((x_ + PLAYER_SIZE) % TILE_SIZE) - 1;
+            x_ = (x_) - ((x_ + size_) % TILE_SIZE) - 1;
             if(type_ == character_fireball) exists_ = false;
             panda_hit_wall();
         }
         else if((*quests_)[*current_quest_].curr_floor()->terrain_at(l, k)) {
-            x_ = (x_) - ((x_ + PLAYER_SIZE) % TILE_SIZE) - 1;
+            x_ = (x_) - ((x_ + size_) % TILE_SIZE) - 1;
             if(type_ == character_fireball) exists_ = false;
             panda_hit_wall();
         }
@@ -133,9 +130,9 @@ void character::update(Uint32 dt) {
     // j = y top
     j = (y_ - (y_ % TILE_SIZE)) / TILE_SIZE;
     // k = x right
-    k = ((x_ + PLAYER_SIZE) - ((x_ + PLAYER_SIZE) % TILE_SIZE)) / TILE_SIZE;
+    k = ((x_ + size_) - ((x_ + size_) % TILE_SIZE)) / TILE_SIZE;
     // l = y bot
-    l = ((y_ + PLAYER_SIZE) - ((y_ + PLAYER_SIZE) % TILE_SIZE)) / TILE_SIZE;
+    l = ((y_ + size_) - ((y_ + size_) % TILE_SIZE)) / TILE_SIZE;
     if(y_vel_ < 0) {
         if((*quests_)[*current_quest_].curr_floor()->terrain_at(j, i)) {
             y_ = TILE_SIZE + (y_ - (y_ % TILE_SIZE)) + 1;
@@ -150,12 +147,12 @@ void character::update(Uint32 dt) {
     }
     else if(y_vel_ > 0) {
         if((*quests_)[*current_quest_].curr_floor()->terrain_at(l, i)) {
-            y_ = (y_) - ((y_ + PLAYER_SIZE) % TILE_SIZE) - 1;
+            y_ = (y_) - ((y_ + size_) % TILE_SIZE) - 1;
             if(type_ == character_fireball) exists_ = false;
             panda_hit_wall();
         }
         else if((*quests_)[*current_quest_].curr_floor()->terrain_at(l, k)) {
-            y_ = (y_) - ((y_ + PLAYER_SIZE) % TILE_SIZE) - 1;
+            y_ = (y_) - ((y_ + size_) % TILE_SIZE) - 1;
             if(type_ == character_fireball) exists_ = false;
             panda_hit_wall();
         }
@@ -214,6 +211,12 @@ void character::move_degrees(int degrees) {
     move_ = false;
     x_vel_ = speed * cos((float)degrees * PI/180.0);
     y_vel_ = -speed * sin((float)degrees * PI/180.0);
+    if(x_vel_ < 0) x_vel_+=10;
+    if(y_vel_ < 0) y_vel_+=10;
+    if (x_vel_ < 0 && abs(x_vel_) > abs(y_vel_)) face_direction(dir_left);
+    if (x_vel_ > 0 && abs(x_vel_) > abs(y_vel_)) face_direction(dir_right);
+    if (y_vel_ < 0 && abs(y_vel_) > abs(x_vel_)) face_direction(dir_up);
+    if (y_vel_ > 0 && abs(y_vel_) > abs(x_vel_)) face_direction(dir_down);
 }
 
 void character::stop_move(enum direction dir) {

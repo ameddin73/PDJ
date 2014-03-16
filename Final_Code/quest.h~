@@ -42,7 +42,7 @@ public:
     //Spawns enemies
     //@param float initDiff
     quest(bool nexus, character *player,vector<quest> *quests, int *current_quest);
-    ~quest();
+    //~quest();
     //Updates enemy count and status of Quest
     void update(Uint32 dt);
     void spawn_monster();    

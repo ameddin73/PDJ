@@ -36,6 +36,7 @@ private:
     int *current_quest_;
     character *panda_;
 
+    bool got_panda;
 public:
     
     //Creates new Quest according to difficulty level
