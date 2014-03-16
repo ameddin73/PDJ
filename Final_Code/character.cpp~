@@ -41,6 +41,7 @@ character::character(string initName, int initX, int initY, int initHealth, int 
         case character_player: size_ = PLAYER_SIZE; break;
         case character_fireball: size_ = FIREBALL_SIZE; break;
         case character_monster: size_ = PLAYER_SIZE; break;
+        case character_panda: size_ = PANDA_SIZE; break;
     }
 }
 
@@ -54,7 +55,7 @@ void character::changeName(string newName) {
     name_ = newName;
 }
 
-
+int character::degrees() { return move_direction; }
 
 void character::update(Uint32 dt) {
     if(type_ == character_player && (time_passed_ += dt) > 1000/12) { //player animation

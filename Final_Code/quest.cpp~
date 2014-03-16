@@ -49,13 +49,10 @@ void quest::update(Uint32 dt) {
 void quest::spawn_monster() {
     int x;
     int y;
-    bool ran_through = false;
     do {
         coordinate random = floorplans[current_floor].random_space();
         x = random.j();
         y = random.i();
-        if(ran_through) cout << "x: " << x << " y: " << y << "\n";
-        ran_through = true;
     } while((TILE_SIZE * x > player_->x() - WINDOW_WIDTH/2 && TILE_SIZE * x < player_->x() + WINDOW_WIDTH/2) && (TILE_SIZE * y > player_->y() - WINDOW_HEIGHT/2 && TILE_SIZE * y < player_->y() + WINDOW_HEIGHT/2));
     character zombie("ZOMBEE", x * TILE_SIZE, y * TILE_SIZE, 100, 0, DEFAULT_SPEED/2 + (rand() % (DEFAULT_SPEED/4)), quests_, current_quest_, character_monster);
     mobs_[current_floor].push_back(zombie);

@@ -41,6 +41,7 @@ character::character(string initName, int initX, int initY, int initHealth, int 
         case character_player: size_ = PLAYER_SIZE; break;
         case character_fireball: size_ = FIREBALL_SIZE; break;
         case character_monster: size_ = PLAYER_SIZE; break;
+        case character_panda: size_ = PANDA_SIZE; break;
     }
 }
 

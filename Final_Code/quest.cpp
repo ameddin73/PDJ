@@ -23,11 +23,10 @@ quest::quest(bool nexus, character *player, vector<quest> *quests, int *current_
         floorplan nexus(true);
         floorplans.push_back(nexus);
     } else {
-        for(int i = 0; i < 3; ++i) {
-        }
         floorplan random(false);
         floorplans.push_back(random);
     }
+
 }
 
 void quest::update(Uint32 dt) {
