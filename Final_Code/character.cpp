@@ -57,16 +57,38 @@ void character::changeName(string newName) {
 
 int character::degrees() { return move_direction; }
 
+void character::panda_hit_wall() {
+    if(type_ == character_panda) {
+        move_degrees(rand() % 360);
+        if (x_vel_ < 0 && abs(x_vel_) > abs(y_vel_)) face_direction(dir_left);
+        if (x_vel_ > 0 && abs(x_vel_) > abs(y_vel_)) face_direction(dir_right);
+        if (y_vel_ < 0 && abs(y_vel_) > abs(x_vel_)) face_direction(dir_up);
+        if (y_vel_ > 0 && abs(y_vel_) > abs(x_vel_)) face_direction(dir_down);
+    }
+}
+
 void character::update(Uint32 dt) {
     if(type_ == character_player && (time_passed_ += dt) > 1000/12) { //player animation
         animation_state_ = (animation_state_ + 1) % 4;
         time_passed_ = 0;
     }
-    if(x_vel_ == 0 && y_vel_ == 0) animation_state_ = 0;
 	if (type_ == character_fireball && (time_passed_ += dt) > 1000 / 12) { //fireball animation
 		animation_state_ = (animation_state_ + 1) % 5;
 		time_passed_ = 0;
 	}
+	if (type_ == character_panda && (time_passed_ += dt) > 1000 / 6) { //fireball animation
+		animation_state_ = (animation_state_ + 1) % 4;
+		time_passed_ = 0;
+	}
+    if (type_ == character_panda) {
+        if(x_vel_ == 0 && y_vel_ == 0) {
+            move_degrees(rand() % 360);
+            if (x_vel_ < 0 && abs(x_vel_) > abs(y_vel_)) face_direction(dir_left);
+            if (x_vel_ > 0 && abs(x_vel_) > abs(y_vel_)) face_direction(dir_right);
+            if (y_vel_ < 0 && abs(y_vel_) > abs(x_vel_)) face_direction(dir_up);
+            if (y_vel_ > 0 && abs(y_vel_) > abs(x_vel_)) face_direction(dir_down);
+        }
+    }
 	if (x_vel_ == 0 && y_vel_ == 0) animation_state_ = 0;
 
     //TODO: update GUI for character location
@@ -84,20 +106,24 @@ void character::update(Uint32 dt) {
         if((*quests_)[*current_quest_].curr_floor()->terrain_at(j, i)) {
             x_ = TILE_SIZE + (x_ - (x_ % TILE_SIZE)) + 1;
             if(type_ == character_fireball) exists_ = false;
+            panda_hit_wall();
         }
         else if((*quests_)[*current_quest_].curr_floor()->terrain_at(l, i)) {
             x_ = TILE_SIZE + (x_ - (x_ % TILE_SIZE)) + 1;
             if(type_ == character_fireball) exists_ = false;
+            panda_hit_wall();
         }
     }
     else if(x_vel_ > 0) {
         if((*quests_)[*current_quest_].curr_floor()->terrain_at(j, k)) {
             x_ = (x_) - ((x_ + PLAYER_SIZE) % TILE_SIZE) - 1;
             if(type_ == character_fireball) exists_ = false;
+            panda_hit_wall();
         }
         else if((*quests_)[*current_quest_].curr_floor()->terrain_at(l, k)) {
             x_ = (x_) - ((x_ + PLAYER_SIZE) % TILE_SIZE) - 1;
             if(type_ == character_fireball) exists_ = false;
+            panda_hit_wall();
         }
     }
     y_ += y_vel_ * (dt/1000.f);
@@ -114,20 +140,24 @@ void character::update(Uint32 dt) {
         if((*quests_)[*current_quest_].curr_floor()->terrain_at(j, i)) {
             y_ = TILE_SIZE + (y_ - (y_ % TILE_SIZE)) + 1;
             if(type_ == character_fireball) exists_ = false;
+            panda_hit_wall();
         }
         else if((*quests_)[*current_quest_].curr_floor()->terrain_at(j, k)) {
             y_ = TILE_SIZE + (y_ - (y_ % TILE_SIZE)) + 1;
             if(type_ == character_fireball) exists_ = false;
+            panda_hit_wall();
         }
     }
     else if(y_vel_ > 0) {
         if((*quests_)[*current_quest_].curr_floor()->terrain_at(l, i)) {
             y_ = (y_) - ((y_ + PLAYER_SIZE) % TILE_SIZE) - 1;
             if(type_ == character_fireball) exists_ = false;
+            panda_hit_wall();
         }
         else if((*quests_)[*current_quest_].curr_floor()->terrain_at(l, k)) {
             y_ = (y_) - ((y_ + PLAYER_SIZE) % TILE_SIZE) - 1;
             if(type_ == character_fireball) exists_ = false;
+            panda_hit_wall();
         }
     }
 }
@@ -239,6 +269,8 @@ bool character::collides_with(character b) {
 void character::unspawn() { exists_ = false; }
 
 int character::animation_state() { return animation_state_; }
+
+void character::set_position(int x, int y) { x_ = x; y_ = y; }
 // // // // // // // // // // // // // // // // // // // // // // // // 
 // Version: 
 // $Id$ 

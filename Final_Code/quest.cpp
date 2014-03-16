@@ -27,7 +27,17 @@ quest::quest(bool nexus, character *player, vector<quest> *quests, int *current_
         floorplans.push_back(random);
     }
 
+    int x;
+    int y;
+    do {
+        coordinate random = floorplans[current_floor].random_space();
+        x = random.j();
+        y = random.i();
+    } while((TILE_SIZE * x > player_->x() - WINDOW_WIDTH/2 && TILE_SIZE * x < player_->x() + WINDOW_WIDTH/2) && (TILE_SIZE * y > player_->y() - WINDOW_HEIGHT/2 && TILE_SIZE * y < player_->y() + WINDOW_HEIGHT/2));
+    panda_ = new character("MFP", x * TILE_SIZE, y * TILE_SIZE, PLAYER_HEALTH, 0, DEFAULT_SPEED, quests, current_quest, character_panda);
 }
+
+//quest::~quest() { delete panda_; }
 
 void quest::update(Uint32 dt) {
     diff = player_->xp(); // CHANGE THIS
@@ -43,6 +53,7 @@ void quest::update(Uint32 dt) {
 			it->take_damage(1000000);
 		}
     }
+    panda_->update(dt);
 }
 
 void quest::spawn_monster() {
@@ -60,6 +71,8 @@ void quest::spawn_monster() {
 vector<character> *quest::mobs() { return &(mobs_[current_floor]); }
 
 floorplan* quest::curr_floor(){ return &(floorplans.front()); }
+
+character* quest::panda() { return panda_; }
 // // // // // // // // // // // // // // // // // // // // // // // // 
 // Version: 
 // $Id$ 

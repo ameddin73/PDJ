@@ -35,6 +35,14 @@ printer::printer(vector<quest> *quests, character *player, int *current_quest, v
         fireball_clips_[i].w = FIREBALL_SIZE;
         fireball_clips_[i].h = FIREBALL_SIZE;
     }
+    for (int i = 0; i < TOTAL_SPRITES; i++) {
+        for (int j = 0; j < PANDA_ANIMATION_FRAMES; j++) {
+            panda_clips_[i][j].x = j * PANDA_SIZE;
+            panda_clips_[i][j].y = i * PANDA_SIZE;
+            panda_clips_[i][j].w = PANDA_SIZE;
+            panda_clips_[i][j].h = PANDA_SIZE;
+        }
+    }
     camera_.x = (player_->x() + PLAYER_SIZE / 2) - WINDOW_WIDTH / 2;
     camera_.y = (player_->y() + PLAYER_SIZE / 2) - WINDOW_HEIGHT / 2;
     camera_.w = WINDOW_WIDTH;
@@ -70,6 +78,7 @@ bool printer::init() {
                 overlay_.set_renderer(renderer_);
                 fireball_.set_renderer(renderer_);
                 zombie_.set_renderer(renderer_);
+                panda_.set_renderer(renderer_);
                 
                 int imgFlags = IMG_INIT_PNG;
                 if(!(IMG_Init(imgFlags) & imgFlags)) {
@@ -102,6 +111,10 @@ bool printer::load_media() {
     }
     if(!zombie_.load_from_file("zombie.png")) {
         cout << "Can't load zombie!\n";
+        success = false;
+    }
+    if(!panda_.load_from_file("mothafuckinpanda2.png")) {
+        cout << "Can't load panda!\n";
         success = false;
     }
     return success;
@@ -154,6 +167,9 @@ void printer::update() {
             SDL_RenderCopyEx(renderer_, zombie_.texture(), &sprite_clips_[it->get_direction()][0], &zombie_render, 0.0, NULL, SDL_FLIP_NONE);
     }
     
+    character* panda = (*quests_)[*current_quest_].panda();
+    SDL_Rect panda_render = {panda->x() - camera_.x, panda->y() - camera_.y, PANDA_SIZE, PANDA_SIZE};
+    SDL_RenderCopyEx(renderer_, panda_.texture(), &panda_clips_[panda->animation_state()][panda->get_direction()], &panda_render, 0.0, NULL, SDL_FLIP_NONE);
 
 
     SDL_Rect overlay_clip = {0, 0, WINDOW_WIDTH*2, WINDOW_HEIGHT*2};

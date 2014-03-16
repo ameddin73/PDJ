@@ -34,6 +34,7 @@ private:
     character* player_;
     int time_passed_;
     int *current_quest_;
+    character *panda_;
 
 public:
     
@@ -41,12 +42,13 @@ public:
     //Spawns enemies
     //@param float initDiff
     quest(bool nexus, character *player,vector<quest> *quests, int *current_quest);
+    ~quest();
     //Updates enemy count and status of Quest
     void update(Uint32 dt);
     void spawn_monster();    
     floorplan *curr_floor();
-    //vector<character> *mobs();
-
+    vector<character> *mobs();
+    character *panda();
 };
 
 #endif // QUEST_H

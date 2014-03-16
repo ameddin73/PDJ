@@ -126,6 +126,7 @@ public:
     bool collides_with(character b);
 	void unspawn();
     int degrees();
+    void set_position(int x, int y);
 };
 
 #endif // CHARACTER_H

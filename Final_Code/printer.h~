@@ -26,6 +26,8 @@ using namespace std;
 #define ANIMATION_FRAMES 4 
 
 #define FIREBALL_ANIMATION_FRAMES 5
+#define PANDA_ANIMATION_FRAMES 3
+
 /*#define TOTAL_TILE_SPRITES = 15
 
 
@@ -97,9 +99,11 @@ class printer {
         load_texture overlay_;
         load_texture fireball_;
         load_texture zombie_;
+        load_texture panda_;
         SDL_Rect tile_clips_[TOTAL_TILE_SPRITES];
         SDL_Rect sprite_clips_[TOTAL_SPRITES][ANIMATION_FRAMES];
-        SDL_Rect fireball_clips_[
+        SDL_Rect fireball_clips_[FIREBALL_ANIMATION_FRAMES];
+        SDL_Rect panda_clips_[TOTAL_SPRITES][PANDA_ANIMATION_FRAMES];
         SDL_Rect camera_;
     public:
         printer(vector<quest> *quests, character *player, int *current_quest, vector<character> *fireballs);
