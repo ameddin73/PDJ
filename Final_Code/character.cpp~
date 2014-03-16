@@ -42,15 +42,24 @@ character::character(string initName, int initX, int initY, int initHealth, int 
         case character_fireball: size_ = FIREBALL_SIZE; break;
         case character_monster: size_ = ZOMBIE_SIZE; break;
         case character_panda: size_ = PANDA_SIZE; break;
+        case character_trapdoor: size_ = TRAPDOOR_SIZE; break; 
     }
     if(type_ == character_panda)
         move_degrees(rand() % 360);
 }
 
 void character::random_pos() {
-    coordinate random = (*quests_)[*current_quest_].curr_floor()->random_space();
-    x_ = random.j() * TILE_SIZE;
-    y_ = random.i() * TILE_SIZE;
+    //if(type_ != character_trapdoor) {
+        coordinate random = (*quests_)[*current_quest_].curr_floor()->random_space();
+        x_ = random.j() * TILE_SIZE;
+        y_ = random.i() * TILE_SIZE;
+    /*} else {
+        do {
+            coordinate random = (*quests_)[*current_quest_].curr_floor()->random_space();
+        } while ((*quests_)[*current_quest_].curr_floor()->terrain_at(random.i()+1, random.j()) ||(*quests_)[*current_quest_].curr_floor()->terrain_at(random.i(), random.j()+1));
+        x_ = random.j() * TILE_SIZE;
+        y_ = random.i() * TILE_SIZE;
+    }*/
 }
 
 void character::changeName(string newName) {
@@ -82,7 +91,7 @@ void character::update(Uint32 dt) {
 		animation_state_ = (animation_state_ + 1) % 3;
 		time_passed_ = 0;
 	}
-    if (type_ == character_panda) {
+    if (type_ == character_trapdoor) {
         if(time_passed_ == 0)
         cout << "x: " << x_ / TILE_SIZE << " y: " << y_ / TILE_SIZE << "\n";
     }

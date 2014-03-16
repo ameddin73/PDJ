@@ -35,9 +35,10 @@ private:
     int time_passed_;
     int *current_quest_;
     character *panda_;
-
+    character *trapdoor_;
     bool got_panda;
 public:
+    void new_quest();
     
     //Creates new Quest according to difficulty level
     //Spawns enemies
@@ -50,6 +51,7 @@ public:
     floorplan *curr_floor();
     vector<character> *mobs();
     character *panda();
+    character *trapdoor();
 };
 
 #endif // QUEST_H

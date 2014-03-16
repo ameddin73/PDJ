@@ -21,6 +21,12 @@ printer::printer(vector<quest> *quests, character *player, int *current_quest, v
         tile_clips_[i].w = TILE_SIZE;
         tile_clips_[i].h = TILE_SIZE;
     }
+    for(int i = 0; i < TRAPDOOR_ANIMATION_FRAMES; i++) {
+        trap_clips_[i].x = TRAPDOOR_SIZE*i;
+        trap_clips_[i].y = 0;
+        trap_clips_[i].w = TRAPDOOR_SIZE;
+        trap_clips_[i].h = TRAPDOOR_SIZE;
+    }
     for (int i = 0; i < TOTAL_SPRITES; i++) {
         for (int j = 0; j < ANIMATION_FRAMES; j++) {
             sprite_clips_[i][j].x = i * PLAYER_SIZE;
@@ -83,6 +89,7 @@ bool printer::init() {
                 fireball_.set_renderer(renderer_);
                 zombie_.set_renderer(renderer_);
                 panda_.set_renderer(renderer_);
+                trapdoor_.set_renderer(renderer_);
                 
                 int imgFlags = IMG_INIT_PNG;
                 if(!(IMG_Init(imgFlags) & imgFlags)) {
@@ -121,6 +128,11 @@ bool printer::load_media() {
         cout << "Can't load panda!\n";
         success = false;
     }
+    if(!trapdoor_.load_from_file("pitsheet.png")) {
+        cout << "Can't load tileset!\n";
+        success = false;
+    }
+
     return success;
 }
 
@@ -166,15 +178,18 @@ void printer::update() {
     
     vector<character> *zombs = (*quests_)[*current_quest_].mobs();
     for(vector<character>::iterator it = zombs->begin(); it != zombs->end(); it++) {
-        SDL_Rect zombie_render = {it->x() - camera_.x, it->y() - camera_.y, PLAYER_SIZE, PLAYER_SIZE};
+        SDL_Rect zombie_render = {it->x() - camera_.x, it->y() - camera_.y, ZOMBIE_SIZE, ZOMBIE_SIZE};
         if(it->exists())
-            SDL_RenderCopyEx(renderer_, zombie_.texture(), &sprite_clips_[it->get_direction()][0], &zombie_render, 0.0, NULL, SDL_FLIP_NONE);
+            SDL_RenderCopyEx(renderer_, zombie_.texture(), &zombie_clips_[it->get_direction()][it->animation_state()], &zombie_render, 0.0, NULL, SDL_FLIP_NONE);
     }
     
     character* panda = (*quests_)[*current_quest_].panda();
     SDL_Rect panda_render = {panda->x() - camera_.x, panda->y() - camera_.y, PANDA_SIZE, PANDA_SIZE};
     SDL_RenderCopyEx(renderer_, panda_.texture(), &panda_clips_[panda->get_direction()][panda->animation_state()], &panda_render, 0.0, NULL, SDL_FLIP_NONE);
 
+    character* trapdoor = (*quests_)[*current_quest_].trapdoor();
+    SDL_Rect trapdoor_render = {trapdoor->x() - camera_.x, trapdoor->y() - camera_.y, TRAPDOOR_SIZE, TRAPDOOR_SIZE};
+    SDL_RenderCopyEx(renderer_, trapdoor_.texture(), &trap_clips_[trapdoor->get_direction()], &trapdoor_render, 0.0, NULL, SDL_FLIP_NONE);
 
     SDL_Rect overlay_clip = {0, 0, WINDOW_WIDTH*2, WINDOW_HEIGHT*2};
     SDL_Rect overlay_render = {player_->x() - camera_.x - WINDOW_WIDTH, player_->y() - camera_.y - WINDOW_HEIGHT, WINDOW_WIDTH*2, WINDOW_HEIGHT*2};

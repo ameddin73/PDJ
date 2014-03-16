@@ -21,7 +21,6 @@ void game::run() {
     quest nexus(false, &player_,&quests_, &current_quest_);
     quests_.push_back(nexus);
     current_quest_ = 0;
-    player_.random_pos();
     printer print(&quests_, &player_, &current_quest_, &fireballs_);
     print.init();
     print.load_media();

@@ -27,6 +27,7 @@ using namespace std;
 
 #define FIREBALL_ANIMATION_FRAMES 5
 #define PANDA_ANIMATION_FRAMES 3
+#define TRAPDOOR_FRAMES 2
 
 /*#define TOTAL_TILE_SPRITES = 15
 
@@ -47,8 +48,9 @@ enum tiles {
     TILE_W_JUT,
     TILE_WALL };*/
     
-#define TOTAL_TILE_SPRITES 51 
-
+#define TOTAL_TILE_SPRITES 51
+#define TRAPDOOR_SPRITES 1
+#define TRAPDOOR_ANIMATION_FRAMES 2
 enum tiles {
     TILE_FLOOR,
     TILE_WALL };
@@ -64,7 +66,7 @@ enum sprites {
 
 // This code heavily borrowed from Lazy Foo' Productions [ http://lazyfoo.net/ ]
 
-class load_texture {
+class load_texture
     public:
         load_texture();
         ~load_texture();
@@ -100,11 +102,14 @@ class printer {
         load_texture fireball_;
         load_texture zombie_;
         load_texture panda_;
+        load_texture trapdoor_;
         SDL_Rect tile_clips_[TOTAL_TILE_SPRITES];
         SDL_Rect sprite_clips_[TOTAL_SPRITES][ANIMATION_FRAMES];
         SDL_Rect fireball_clips_[FIREBALL_ANIMATION_FRAMES];
         SDL_Rect panda_clips_[TOTAL_SPRITES][PANDA_ANIMATION_FRAMES];
+        SDL_Rect zombie_clips_[TOTAL_SPRITES][PANDA_ANIMATION_FRAMES];
         SDL_Rect camera_;
+        SDL_Rect trap_clips_[TRAPDOOR_ANIMATION_FRAMES];
     public:
         printer(vector<quest> *quests, character *player, int *current_quest, vector<character> *fireballs);
         bool init();

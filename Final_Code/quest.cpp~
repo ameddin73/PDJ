@@ -28,17 +28,31 @@ quest::quest(bool nexus, character *player, vector<quest> *quests, int *current_
         floorplans.push_back(random);
     }
 
+    player_->random_pos();
     int x;
     int y;
     do {
-        coordinate random = floorplans[current_floor].random_space();
-        x = random.j();
-        y = random.i();
+        coordinate random_coor = floorplans[current_floor].random_space();
+        x = random_coor.j();
+        y = random_coor.i();
     } while((TILE_SIZE * x > player_->x() - WINDOW_WIDTH/2 && TILE_SIZE * x < player_->x() + WINDOW_WIDTH/2) && (TILE_SIZE * y > player_->y() - WINDOW_HEIGHT/2 && TILE_SIZE * y < player_->y() + WINDOW_HEIGHT/2));
     panda_ = new character("MFP", x * TILE_SIZE, y * TILE_SIZE, PLAYER_HEALTH, 0, DEFAULT_SPEED / 2, quests, current_quest, character_panda);
+    do {
+        coordinate random_coor = floorplans[current_floor].random_space();
+        x = random_coor.j();
+        y = random_coor.i();
+    } while(((TILE_SIZE * x > player_->x() - WINDOW_WIDTH/2 && TILE_SIZE * x < player_->x() + WINDOW_WIDTH/2) && (TILE_SIZE * y > player_->y() - WINDOW_HEIGHT/2 && TILE_SIZE * y < player_->y() + WINDOW_HEIGHT/2)) && ((*quests_)[*current_quest_].curr_floor()->terrain_at(y + 1, x) || (*quests_)[*current_quest_].curr_floor()->terrain_at(y, x + 1) || (*quests_)[*current_quest_].curr_floor()->terrain_at(y + 1, x + 1)));
+    cout << "x: " << x << " y: " << y << "\n";
+    trapdoor_ = new character("It's a trap!", x * TILE_SIZE, y * TILE_SIZE, PLAYER_HEALTH, 0, 0, quests, current_quest, character_trapdoor);
 }
 
 //quest::~quest() { delete panda_; }
+
+void quest::new_quest() {
+    quest newq(false, player_, quests_, current_quest_);
+    quests_->push_back(newq);
+    *current_quest_ += 1;
+}
 
 void quest::update(Uint32 dt) {
     diff = player_->xp(); // CHANGE THIS
@@ -54,14 +68,18 @@ void quest::update(Uint32 dt) {
 			it->take_damage(1000000);
 		}
     }
-    if(panda_->collides_with(*player_)) got_panda = true;
-    if(got_panda && !(player_->is_moving())) panda_->stop();
-    if(got_panda && player_->is_moving()) panda_->move_degrees(0);
+    if(panda_->collides_with(*player_)){
+        got_panda = true;
+        trapdoor_->face_direction(dir_up);
+    }
+    if(got_panda && (player_->is_moving())) panda_->stop();
+    if(got_panda && !player_->is_moving()) panda_->move_degrees(0);
     panda_->update(dt);
     if(got_panda){
         panda_->set_position(player_->x() - 8, player_->y() - 8);
         panda_->face_direction(player_->get_direction());
     }
+    if(got_panda && trapdoor_->collides_with(*player_)) new_quest();
 }
 
 void quest::spawn_monster() {
@@ -81,6 +99,8 @@ vector<character> *quest::mobs() { return &(mobs_[current_floor]); }
 floorplan* quest::curr_floor(){ return &(floorplans.front()); }
 
 character* quest::panda() { return panda_; }
+
+character* quest::trapdoor() { return trapdoor_; }
 // // // // // // // // // // // // // // // // // // // // // // // // 
 // Version: 
 // $Id$ 
