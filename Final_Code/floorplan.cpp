@@ -530,7 +530,7 @@ floorplan::floorplan(bool nexus) {
 					(floorplan_[i + 1][j + 1]) && //bottom-right
 					(floorplan_[i + 1][j]) && //bottom
 					//(floorplan_[i + 1][j - 1]) && //bottom-left
-					(floorplan_[i][j - 1])) { //left
+					!(floorplan_[i][j - 1])) { //left
 					floorplan_[i][j] = tile_wallhook_west_northeast; //46
 				}
 				if (//(floorplan_[i - 1][j - 1]) && //top-left
