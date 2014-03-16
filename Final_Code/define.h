@@ -22,7 +22,7 @@
 #define PLAYER_SIZE 16
 
 #define FIREBALL_SIZE 32
-#define DEFAULT_SPEED 100
+#define DEFAULT_SPEED 200
 enum tile {
     tile_floor, //0
     tile_single, //5

@@ -18,7 +18,7 @@ game::game() : player_("Player 1", -1, -1, PLAYER_HEALTH, 0, DEFAULT_SPEED*2, &q
 }
     
 void game::run() {
-    quest nexus(false, &player_, &current_quest_);
+    quest nexus(false, &player_,&quests_, &current_quest_);
     quests_.push_back(nexus);
     current_quest_ = 0;
     player_.random_pos();
@@ -38,6 +38,7 @@ void game::run() {
             handle_event(e);
         }
         player_.update(dt);
+        quests_[current_quest_].update(dt);
         for(vector<character>::iterator it = fireballs_.begin(); it != fireballs_.end(); ++it)
             it->update(dt);
         print.update();

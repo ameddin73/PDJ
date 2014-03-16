@@ -13,7 +13,7 @@
 
 using namespace std;
 
-game::game() : player_("Player 1", -1, -1, PLAYER_HEALTH, 0, DEFAULT_SPEED*2, &quests_, &current_quest_, character_player), print_(&quests_, &player_, &current_quest_, &fireballs_) {
+game::game() : player_("Player 1", -1, -1, PLAYER_HEALTH, 0, DEFAULT_SPEED, &quests_, &current_quest_, character_player), print_(&quests_, &player_, &current_quest_, &fireballs_) {
     current_quest_ = 0;
 }
     
@@ -38,6 +38,7 @@ void game::run() {
             handle_event(e);
         }
         player_.update(dt);
+        quests_[current_quest_].update(dt);
         for(vector<character>::iterator it = fireballs_.begin(); it != fireballs_.end(); ++it)
             it->update(dt);
         print.update();

@@ -63,6 +63,7 @@ bool printer::init() {
                 sprites_.set_renderer(renderer_);
                 overlay_.set_renderer(renderer_);
                 fireball_.set_renderer(renderer_);
+                zombie_.set_renderer(renderer_);
                 
                 int imgFlags = IMG_INIT_PNG;
                 if(!(IMG_Init(imgFlags) & imgFlags)) {
@@ -77,7 +78,7 @@ bool printer::init() {
 
 bool printer::load_media() {
     bool success = true;
-    if(!tiles_.load_from_file("spritesheet5.png")) {
+    if(!tiles_.load_from_file("spritesheet6.png")) {
         cout << "Can't load tileset!\n";
         success = false;
     }
@@ -91,6 +92,10 @@ bool printer::load_media() {
     }
     if(!fireball_.load_from_file("fireball.png")) {
         cout << "Can't load fireball!\n";
+        success = false;
+    }
+    if(!zombie_.load_from_file("zombie.png")) {
+        cout << "Can't load zombie!\n";
         success = false;
     }
     return success;
@@ -135,6 +140,16 @@ void printer::update() {
         if(it->exists())
             SDL_RenderCopyEx(renderer_, fireball_.texture(), NULL, &fireball_render, 0.0, NULL, SDL_FLIP_NONE);
     }
+    
+    vector<character> *zombs = (*quests_)[*current_quest_].mobs();
+    for(vector<character>::iterator it = zombs->begin(); it != zombs->end(); it++) {
+        cout << "printed\n";
+        SDL_Rect zombie_render = {it->x() - camera_.x, it->y() - camera_.y, PLAYER_SIZE, PLAYER_SIZE};
+        if(it->exists())
+            SDL_RenderCopyEx(renderer_, zombie_.texture(), &sprite_clips_[it->get_direction()][0], &zombie_render, 0.0, NULL, SDL_FLIP_NONE);
+    }
+    
+
 
     SDL_Rect overlay_clip = {0, 0, WINDOW_WIDTH*2, WINDOW_HEIGHT*2};
     SDL_Rect overlay_render = {player_->x() - camera_.x - WINDOW_WIDTH, player_->y() - camera_.y - WINDOW_HEIGHT, WINDOW_WIDTH*2, WINDOW_HEIGHT*2};

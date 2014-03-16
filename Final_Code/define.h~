@@ -63,9 +63,9 @@ enum tile {
 };
 
 enum direction {
-    dir_left,
     dir_right,
     dir_up,
+    dir_left,
     dir_down
 };
 // add include files only if needed for these declarations.
