@@ -14,9 +14,9 @@ using namespace std;
 
 int main( int argc, const char* argv[] ) {
     srand(time(NULL));
-    game nigger;
-    //Run nigga run
-    nigger.run();
+    game homie;
+    //Run homie run
+    homie.run();
     return 0;
 }
 
